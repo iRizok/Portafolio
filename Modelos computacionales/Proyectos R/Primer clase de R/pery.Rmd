@@ -1,0 +1,71 @@
+---
+title: "Primer problema"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## Including Plots
+
+Primer Problema de Modelos Computacionales:
+
+1.-
+```{r echo=TRUE}
+#Definir vector de valores de la variable x
+x <- c(1:5)
+```
+2.-
+```{r echo=TRUE}
+#Constante de proporcionalidad
+K <- 1/15
+```
+3.-
+```{r echo=TRUE}
+#Definir la función de distribucion de probabilidad
+fdp <- function(x){
+  K*x
+}
+#Los valores de probabilidad son:
+print(fdp)
+```
+```{r echo=TRUE}
+#Definir funicon de distribucion acumulada de probabilidad
+FDA <- function(x){
+  sum(K*c(1:x))
+}
+#la FDA para x = 3 es
+print(FDA(3))
+#la FDA para x = 5 es
+print(FDA(5))
+```
+```{r}
+# grafica de la fdp y FDA
+plot(x, fdp(x), ylim = c(0,1), xlim = c(0,6))
+y = c(FDA(1), FDA(2), FDA(3), FDA(4), FDA(5))
+lines(x,y, col = "red", type = "s")
+```
+
+-Calcule la probabilidad de que x tenga valor par
+```{r}
+#La probabilidad de que x tenga valor par es:
+print(fdp(2)+fdp(4))
+```
+-Calcule la media y la varianza de la variable aleatoria.
+```{r}
+#La media se calcula como sigue:
+media <- sum(x*fdp(x))
+  
+#La varianza se calcula:
+varianza <- sum(((x - media)^2)*fdp(x))
+
+```
+
+
+
+

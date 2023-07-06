@@ -1,0 +1,753 @@
+---
+title: "Tarea 4"
+author: "Ricardo Gabriel Rodriguez Gonzalez"
+date: '2022-05-18'
+output:
+  word_document: default
+  pdf_document: default
+---
+
+## Ejercicio 1
+
+La tienda de alimentos Mom-and-Pop’s tiene un estacionamiento pequeño con tres espacios reservados para los clientes. Si la tienda esta abierta los autos llegan y usan un espacio con una tasa media de 2 por hora. Para n = 0; 1; 2; 3, la probabilidad Pn de que haya exactamente n espacios ocupados es P0 = 0:1, P1 = 0:2, P2 = 0:4, P3 = 0:3.
+
+a)  Describa la interpretación de este estacionamiento como un sistema de colas.  En particular, identifique los clientes y los servidores. 
+
+***El sistema es el estacionamiento.Los clientes son los autos. Los servidores son los espacios disponibles***
+
+¿Cuál es el servicio que se proporciona? 
+
+***Los clientes van a la tienda de alimientos Mom-and-Pop’s a comprar***
+
+
+¿Qué constituye el tiempo de servicio?
+
+***El tiempo que pasa el cliente en la tienda (El tiempo que están estacionados)***
+
+
+¿Cuál es la capacidad de la cola?
+
+***La cola son los espacios reservados de estacionamiento para los clientes de la tienda de alimientos Mom-and-Pop’s. La capacidad de la cola es de 3 autos***
+
+- Determine las medidas de desempeño básicas: L,Lq, W y Wq de este sistema de colas
+
+Calculamos el número  promedio de clientes en el sistema:
+$L = \displaystyle\sum_{n = 0}^3 n* P_n = 0*P_0 + 1*P_1 + 2*P_2 + 3*P_3 = 0*0.01 + 1*0.2+ 2*0.4 + 3*0.3 = $ 
+```{r}
+n = c(0,1,2,3)
+Pn = c(0.1,0.2,0.4,0.3)
+L = sum(n*Pn)
+print(L)
+```
+
+ Calculamos el tamaño (número de clientes) de la cola:
+```{r}
+s = 3
+```
+ 
+$L_q = \displaystyle\sum_{n = 3}^\infty (n-s)*P_n $
+```{r}
+n = c(3)
+Lq = sum((n-s)*Pn[3])# 0 Clientes en la cola
+print(Lq)
+```
+*** Se esperan en promedio 0 autos en la cola. ***
+
+
+ Calculamos el tiempo que un cliente está en el sistema:
+```{r}
+lambda = 2 # 2 espacios/hora
+```
+ 
+$W =  L /\lambda = 1.9/2$
+```{r}
+W = L/lambda #0.95 horas = 57 minutos
+print(W)
+```
+* El tiempo promedio que un auto pasa en el estacionamiento es de 57 minutos. *
+
+Calculamos el tiempo en la cola:
+$W_q = L_q/\lambda $
+
+```{r}
+W_q = Lq/lambda
+print(W_q)
+```
+* El tiempo esperado que un auto pasa en la cola es de 0 horas. *
+
+
+- Use los resultados de b) para determinar el tiempo promedio que un auto permanece en el espacio.
+$W - W_q = 57 - 0 = 57$
+
+* El tiempo promedio que un auto permanece en el espacio de estacionamiento es de 57 minutos. *
+
+## Ejercicio 2
+
+El Midtown Bank siempre tiene dos cajeras en servicio. Los clientes llegan a las cajas a una tasa media de 40 por hora. Una cajera requiere en promedio 2 minutos para servir a un cliente. Cuando ambas cajeras están ocupadas, el cliente que llega se une a una cola y espera a que lo atiendan. Por experiencia se sabe que los clientes esperan en la cola un promedio de 1 minuto antes de pasar a la caja.
+
+* Sistema: Banco, Clientes: clientes(personas) del banco, Servidores: cajeras *
+
+* Tasa de llegadas ($\lambda$) = 40 clientes/hora = 40/60 clientes/minuto *
+
+* Tasa de servicio ($\mu$)* = 2 minutos/cliente
+
+* Número de servidores = 2 *
+
+* Modelo: M/M/C *
+
+- Determine las medidas de desempeño básicas: $W_q, W, L$ y $L_q$ de este sistema.
+
+```{r}
+lambda = 40/60
+mu = 2
+s = 2
+library(queueing)
+t4p3 <- NewInput.MMC(lambda = lambda, mu = mu, c = s, n = 40)
+t4p3o <- QueueingModel(t4p3)
+summary(t4p3o)
+```
+* El tiempo en la cola es: $ = 0.01428571$ minutos = . El tiempo en el sistema: $ W = 0.5142857 $ Minutos = . El número de clientes en el sistema : $L = 0.3428571$ y El número de clientes en la fila: $L_q = 0.00952381$ *.
+
+
+
+
+## Ejercicio 3
+	Una gasolinera cuenta con una bomba de gasolina. Los automoviles que desean cargar llegan segun un proceso de Poisson a una tasa media de 15 por hora. Sin embargo, si la bomba esta en operacion, los clientes potenciales pueden desistir (ir a otra gasolinera). En particular, si hay n autos en ella, la probabilidad de que un cliente potencial que llega desista es n=3 para n = 1; 2; 3. El tiempo necesario para servir un auto tiene distribucion exponencial con media de 4 minutos.
+
+$\lambda_0 = 15$
+$\lambda_1 = 15 - (15*1/3) = 10$
+$\lambda_2 = 15 - (15*2/3) = 5 $
+$\lambda_3 = 15 - (15*3/3) = 0$
+$\bar\lambda = \sum_{n = 0}^\infty \lambda_n P_n = \lambda_0P_P + \lambda_1P_1 + \lambda_2P_2 + \lambda_3P_3 = 8.33$
+
+Calcular las $P_n$ utilizando las ecuaciones de balance:
+
+$\mu*P_1 = \lambda_0*P_0$
+$\lambda_0*P_0 + /mu*P_2 = (\lambda_1+\mu)*P_1$
+$\lambda_1*P_1 + /mu*P_3 = (\lambda_2+\mu)*P_2$
+$\lambda_2*P_2 + /mu*P_4 = (\lambda_3+\mu)*P_3$
+
+```{r}
+mu <- 1/15
+lambda_0 = 15
+lambda_1 = 10
+lambda_2 = 5
+lambda_3 = 0
+```
+
+
+```{r}
+lambdabarra <- 8.33
+```
+
+a)Encuentre la distribución de probabilidad de estado estable del número de autos en la gasolinera.
+
+$ L = \displaystyle\sum_{n=0}^\infty n P_n = 0P_0 + 1P_1 + 2P_2 + 3P_3 = 4/3 = 1.33$
+
+```{r}
+L = 1.33
+```
+
+
+b) Encuentre el tiempo de espera esperado (incluido el servicio) de los automoviles que se quedan.
+
+$W = L/\bar\lambda$
+
+```{r}
+W = L/lambdabarra # 0.159639 hora = 9.57 minutos
+```
+
+
+
+* Sistema: Gasolinera, Clientes: autos, Servidores: 1 bomba de gasolina *
+
+* Tasa de llegadas ($\lambda$) = 15 autos/hora *
+
+* Tasa de servicios ($\mu$) = media 4 minutos = 1/15 hora *
+
+* Número de servidores = 1 *
+
+* Modelo: M/M/1 *
+
+```{r}
+lambda <- 15 #tasa de llegada
+mu <- 1/15 # tasa de servicio
+c <- 1 
+```
+
+## Ejercicio 4
+
+Un departamento de una empresa tiene una operadora de procesador de textos. Los documentos que se producen en el se entre-gan para ser procesados de acuerdo con un proceso de Poisson con un tiempo esperado entre llegadas de 30 min. Cuando la operadora tiene solo un documento que procesar el tiempo esperado de servicio es de 20 minutos. Cuando hay mas de un documento, la ayuda de edicion reduce este tiempo a 15 min. En ambos casos, los tiempos de servicio tienen distribucion exponencial.
+
+* Sistema: Departamento, Clientes: documentos, Servidores: operadora *
+
+* Tasa de llegadas ($\lambda$) = 1 documento cada 30 min *
+
+* Tasa de servicios ($\mu$) = 20 minutos solo 1 documento, 15 minutos mas de 1 documento *
+
+* Número de servidores = 1 *
+
+* Modelo: M/M/1 *
+
+a) Encuentre la distribucion de estado estable del numero de documentos que la operadora ya recibio pero todavia no procesa
+Calcular las $P_n$ utilizando las ecuaciones de balance:
+
+$\mu_1*P_1 = \lambda*P_0$
+$\lambda*P_0 + /mu_2*P_2 = (\lambda+\mu_1)*P_1$
+$\lambda*P_1 + /mu_2*P_3 = (\lambda+\mu_2)*P_2$
+$\lambda*P_2 + /mu_2*P_4 = (\lambda+\mu_2)*P_3$
+$\dots$
+
+$C_3 = \frac{\lambda\lambda\lambda}{\mu_1\mu_2\mu_3}$
+
+```{r}
+lambda <- 2/60 #2 por hora
+mu1 <- 3/60 #20 minutos hasta 1 documento
+mu2 <- 4/60 #15 minutos mas de 1 documento
+
+c1 <- lambda/mu1
+c2 <- (lambda*lambda)/(mu1*mu2)
+c3 <- (lambda*lambda*lambda)/(mu1*mu2*mu2)
+
+P0 <- 1/(c1+c2+c3)
+P1 <- c1*P0
+P2 <- c2*P0
+P3 <- c3*P0
+
+```
+
+b) Calcule L, Lq, W, Wq de este sistema.
+
+```{r}
+Pn <- c(P0,P1,P2,P3)
+n <- c(0,1,2,3)
+L = sum(n*Pn)
+print(L) # el numero de documentos promedio que llegan al sistema
+```
+
+```{r}
+s <- 1
+n <- c(1,2,3,4)
+Lq = sum((n-s)*Pn) # el numero de documentos en la fila, esperando a ser procesados
+print(Lq)
+```
+
+```{r}
+W = L/lambda
+print(W)# 2 dias, tiempo en el que se va a procesar el documento
+
+Wq =  Lq/lambda
+print(Wq) #tiempo que el documento va a esperar a ser procesado
+```
+
+
+## Ejercicio 5
+
+* Sistema: peluquería, Clientes: personas, Servidores: peluquero *
+
+* Tasa de llegadas ($\lambda$) = 4 clientes por hora = 4/60*
+
+* Tasa de servicios ($\mu$) = 15 minutos por cliente = 4/60 *
+
+* Número de servidores = 1 *
+
+* Tamaño de la cola = 3 *
+
+* Modelo: M/M/1/K *
+
+```{r}
+mu = 4/60
+lambda = 4/60
+s <- 1
+
+library(queueing)
+t4p5 <- NewInput.MM1K(lambda = lambda, mu = mu, k = 4)
+CheckInput(t4p5)
+t4p5o = QueueingModel(t4p5)
+summary(t4p5o)
+```
+a) Las probabilidades
+```{r}
+Pn(t4p5o)
+```
+
+b) La cantidad esperada de clientes en la peluquería.
+
+```{r}
+L(t4p5o) #La cantidad de clientes esperada es 2
+```
+
+
+c) la probabilidad de que los clientes se vayan a otra parte porque el local está lleno.
+
+* La probabilidad de que los clientes se vayan a otra parte porque el local está lleno es de 0.2 *
+
+# Ejercicio 6
+Juan Salas es alumno en la UAdeC. Hace trabajos extras para aumentar sus ingresos. Las peticiones de trabajo llegan en promedio cada 5 días, pero el tiempo entre ellas es exponencial.  El tiempo para terminar un trabajo también es exponencial, con una media de 4 días.
+
+* Sistema: Trabajos extras que hace Juan Salas, Clientes: Trabajos, Servidores: Juan Salas *
+
+* Tasa de llegadas ($\lambda$) = 1 trabajo cada 5 dias = 1.4 trabajos cada semana *    
+
+* Tasa de servicio ($\mu$) = 1 trabajo para 4 días = 1.75 trabajos en una semana *
+
+* Numero de servidores = 1 *
+
+* Modelo: M/M/1/K *
+
+a)¿Cúal es la probabilidad de que le falte trabajo a Juan?
+
+```{r}
+n=0
+lambda= 1.4
+mu= 1.75
+t4p6= NewInput.MM1(lambda= lambda, mu= mu, n= n)
+CheckInput(t4p6)
+t4p6o= QueueingModel(t4p6)
+summary(t4p6o)
+```
+La probabilidad de que le falte trabajo es de 0.2
+
+b)Si Juan cobra unos $50 por cada trabajo, ¿cuál es su ingreso mensual promedio?
+
+```{r}
+mensual = 30/5 #6 trabajos cada mes
+ingmensual= 50*mensual
+print(ingmensual)
+Lq(t4p6o)
+```
+su ingreso mensual promedio es de $300
+
+c) Si al final del semestre Juan decide subcontratar los trabajos pendientes a $40 cada uno, ¿cuánto debe esperar pagar en promedio?
+```{r}
+pendientes=Lq(t4p6o)
+pagar=40*pendientes
+print(pagar)
+```
+
+debe esperar pagar en promedio es $128
+
+
+# Ejercicio 7 
+Las probabilidades de que hayan clientes en un sistema (M/M/1) : $(DG/5/∞)$ se ven en la tabla siguiente:
+
+| n | 0 | 1 | 2 | 3 | 4 | 5 |
+|-------|-------------|-------|-------------|-------|-------------|
+| Pn | 0.399 | 0.249 | 0.156 | 0.097 |0.061 | 0.038 |
+
+
+La frecuencia de llegada $λ$ es 5 clientes por hora.  La rapidez del servicio $μ$ es 8 clientes por hora.  Calcule lo siguiente:
+
+```{r}
+
+n0=0
+n1=1
+n2=2
+n3=3
+n4=4
+n5=5
+P0=0.399
+P1=0.249
+P2=0.156
+P3=0.097
+P4=0.061
+P5=0.038
+Sumatoria=sum(P0,P1,P2,P3,P4)
+print(Sumatoria)
+```
+
+
+a)La probabilidad de que un cliente que llega pueda entrar al sistema.
+
+```{r}
+print(Sumatoria)
+```
+La probabilidad de que un cliente que llega pueda entrar al sistema es de 0.962.
+
+b)La frecuencia con la que los clientes que llegan no pueden entrar al sistema.
+```{r}
+frec= 5*0.038
+print(frec)
+```
+ La frecuencia con la que los clientes que llegan no pueden entrar al sistema es de 0.19 clientes por hora.
+ 
+c)La cantidad esperada de clientes en el sistema.
+```{r}
+n0=0
+n1=1
+n2=2
+n3=3
+n4=4
+n5=5
+P0=0.399*n0
+P1=0.249*n1
+P2=0.156*n2
+P3=0.097*n3
+P4=0.061*n4
+P5=0.038*n5
+Ls=sum(P0,P1,P2,P3,P4,P5)
+print(Ls)
+
+```
+
+d)El tiempo promedio de espera en la cola.
+
+```{r}
+Lambda7<-(5*(1-0.038))
+print(Lambda7)
+Ws<-(Ls/Lambda7)
+print(Ws)
+Wq<-(Ws-(1/8))
+print(Wq)
+```
+
+## Ejercicio 8
+
+El centro de computo de la UAdeC tiene cuatro computadoras principales identicas. La cantidad de usuarios
+en cualquier momento es de 25. Cada usuario puede solicitar un trabajo por una terminal, cada 15 minutos
+en promedio, pero el tiempo real entre solicitudes es exponencial. Los trabajos que llegan pasan en forma
+automatica	a la primera computadora disponible. El tiempo de ejecucion por solicitud es exponencial, con
+un promedio de 2 minutos. Calcule lo siguiente:							
+
+
+
+* Los clientes: Los usuarios. *
+
+* El sistema: El centro de cómputo. *
+
+* Los servidores: Las computadoras. *
+
+* Tasa de llegadas ($\lambda$): 1 trabajo cada 15 minutos *
+
+* Tasa de servicio ($\mu$): 1 trabajo cada 2 minutos = 30 trabajos/hora. *
+
+* Número de servidores: 4 *
+
+* Tamaño de la cola: 25 *
+
+* Tipo de cola: M/M/S/K/M *
+Calcule lo siguiente:
+
+```{r}
+mu = 4/60
+lambda = 30/60
+s <- 4
+```
+
+```{r}
+t4p8a <- NewInput.MMCK(lambda = lambda, mu = mu,c = s, k = 25)
+CheckInput(t4p8a)
+t4p8ao <- QueueingModel(t4p8a)
+
+```
+
+```{r}
+t4p8b <- NewInput.MMCKK(lambda = lambda, mu = mu,c = s, k = 25)
+CheckInput(t4p8b)
+t4p8bo <- QueueingModel(t4p8b)
+```
+```{r}
+CompareQueueingModels(t4p8ao,t4p8bo)
+```
+
+
+```{r}
+t4p8c <- NewInput.MMCKM(lambda = lambda, mu = mu, k = s, m = 25)
+CheckInput(t4p8c)
+t4p8co <- QueueingModel(t4p8c)
+```
+
+
+```{r}
+summary(t4p8co)
+```
+
+a)La probabilidad de que un trabajo no se ejecute de inmediato al solicitarlo.
+```{r}
+# Hay que calcular la probabilidad 
+Pn(t4p8co)
+```
+
+b)El tiempo promedio en el que el usuario obtiene sus resultados.
+
+```{r}
+W(t4p8co)
+
+```
+* El tiempo promedio en el que el usuario obtiene su resultados es de 15 horas. *
+
+c)La cantidad promedio de trabajos que esperan su procesamiento.
+
+
+```{r}
+Lq(t4p8co)
+```
+ 
+ d)El porcentaje del tiempo  durante el cual el centro de cómputo está inactivo.
+ 
+```{r}
+
+#Calculamos la P0 (probabilidad de que haya cero clientes en el sistema)
+```
+ * El porcentaje del tiempo durante el cual el centro de cómputo está inactivo es 2.438265e-06%. *
+
+e)La cantidad promedio de computadoras ociosas.
+
+```{r}
+L(t4p8co) - Lq(t4p8co)
+```
+* El promedio todas las computadorads estarán ocupadas, por lo que no habrá computadoras ociosas. *
+
+## Ejercicio 9
+
+Eat & Gas es una gasolinera con dos bombas. El carril que llega a ellas puede dar cabida cuando mucho
+a cinco automóviles, incluyendo los que llenan el tanque. Los que llegan cuando el carril está lleno
+van a otra parte. La distribución de los vehículos que llegan es de Poisson, con promedio de 20 por hora.
+
+El tiempo para llenar y pagar las compras es exponencial, con 6 minutos de promedio.
+$\lambda=20$ vehiculos/hora
+$\mu=1/6 * 60/1=10$ vehiculos/hora
+$p=20/10=2$
+$N=5$ 
+$c=2$
+$p/c=2/2=1$
+
+a)El porcentaje de automóviles que llenarán el tanque en otro lado.
+```{r }
+lambda=20
+mu=10
+N=5
+s=2
+p0=1/((lambda/mu)^0/(1)+(lambda/mu)^1/(1)+((lambda/mu)^2/(2))*(1/1-(lambda/(s*mu))))
+p5=p0*(((lambda/mu)^5)/(2*2^(5-2)))
+
+print(p5)
+```
+
+**El 66.66% de los vrhiculos llenan su taquen en otro lado**
+
+b)El porcentaje de tiempo en el que se usa una bomba.
+```{r }
+lambda=20
+mu=10
+N=5
+s=2
+p0=1/((lambda/mu)^0/(1)+(lambda/mu)^1/(1)+((lambda/mu)^2/(2))*(1/1-(lambda/(s*mu))))
+p1=p0*(8/3)^1/1
+print(p1)
+```
+**Se utiliza una bomba el 88.8%**
+c)La utilización porcentual de las dos bombas.
+```{r }
+lambda=20
+mu=10
+N=5
+s=2
+p0=1/((lambda/mu)^0/(1)+(lambda/mu)^1/(1)+((lambda/mu)^2/(2))*(1/1-(lambda/(s*mu))))
+p5=p0*(((lambda/mu)^5)/(2*2^(5-2)))
+c1=((1-p5)/7.5)*lambda
+ct=c1/s
+print(ct)
+```
+**El uso porcentual es 0.4444**
+
+d)La probabilidad de que un automóvil que llegue no reciba servicio de inmediato, sino que se forme en la
+cola.
+```{r }
+lambda=20
+mu=10
+N=5
+s=2
+p0=1/((lambda/mu)^0/(1)+(lambda/mu)^1/(1)+((lambda/mu)^2/(2))*(1/1-(lambda/(s*mu))))
+p1=p0*(8/3)^1/1
+pn=abs(1-p0-p1)
+print(pn)
+```
+
+**La probabilidad de no recibir servicio al llegar es de 22%**
+
+e)La capacidad del carril que asegure que, en promedio, no haya más del 10% de los vehículos que llegan se
+vayan a otra parte. estén inactivas sea 0.05 o menos.
+
+```{r }
+lambda=20
+mu=10
+N=5
+s=2
+p0=1/((lambda/mu)^0/(1)+(lambda/mu)^1/(1)+((lambda/mu)^2/(2))*(1/1-(lambda/(s*mu))))
+lq=((p0*((lambda/mu)^2)*(lambda/mu)))/(2*(1-2)^2)
+wq=lq/20
+print(wq)#El limite de clientes que se perdera es 0.06%, con las condiciones actuales
+```
+
+
+## Ejercicio 10
+A los conductores nuevos se les pide pasar un examen por escrito, antes de hacer las pruebas de manejo. Los exámenes escritos suelen hacerse en el departamento de policía de la ciudad. Los registros de la ciudad de Springdale indican que la cantidad promedio de exámenes escritos es de 100 por día de 8 horas. El tiempo necesario para contestar el examen es de 30 minutos, más o menos. Sin embargo, la llegada real de los aspirantes y el tiempo que tarda cada uno en contestar son totalmente aleatorios.
+
+Examenes escritos por hora $100/8$
+Tiempo de promedio por examenes $30$
+
+a) La cantidad promedio de asientos que debe tener el departamento de policía en el salón de exámenes.
+$p=\lambda/\mu = (100/8)/2$
+
+```{r }
+p=(100/8)/2
+print(p)
+```
+**la cantidad promedio de asientos es de 6.25 asi que debe de haber 7 asientos**
+
+b) La probabilidad de que los aspirantes rebasen la cantidad promedio de asientos que hay en el salón de
+exámenes.
+
+$p_n>=8=1-(\sum6.25^1/1!*e^-6.23+\sum6.25^2/2!*e^-6.23+...+\sum6.25^7/7!*e^-6.23)$
+
+```{r }
+e=2.718281828
+pn= 1-((6.25^0/1*e^-6.25)+6.25^1/1*e^-6.25+6.25^2/2*e^-6.23+6.25^3/6*e^-6.23+6.25^4/24*e^-6.23+6.25^5/120*e^-6.23+6.25^6/720*e^-6.23+6.25^7/5040*e^-6.23)
+print(pn)
+```
+
+**La probabilidad de que los estudiantes rebasen el numero de asientos en el salon es de 0.27705**
+c) La probabilidad de que en un día no se haga examen alguno.
+```{r }
+p0=6.25^0/1*e^-6.25
+print(p0)
+```
+**la probabilidad de que no se presente ningun examen en un dia es de 0.001930454**
+
+## Ejercicio 11
+Un operador atiende a 5 máquinas automáticas.  Cuando una máquina termina un lote, el operador la debe restablecer para iniciar el siguiente lote. El tiempo para terminar un procesamiento de lote es exponencial, con 45 minutos de promedio.  El tiempo de preparación de la máquina también es exponencial con un promedio de 8 minutos.
+
+* Sistema: Operador restableciendo maquinas , Clientes: maquinas, Servidores: operador *
+
+* Tasa de llegadas ($\lambda$) = 1 maquina en 45 minutos *
+
+* Tasa de servicio ($\mu$) = 8 minutos para cada maquina *
+
+* Numero de servidores = 1 *
+
+* Tamaño de la cola 5 *
+
+* Modelo: M/M/1/K *
+
+```{r}
+lambda= 1.3333 # maquinas por hora
+mu= 7.5 # cada hora 7.5 maquinas
+s= 1
+k=5
+p=lambda/(s*mu)
+tp11= NewInput.MM1KK(lambda= lambda, mu= mu, k= k)
+CheckInput(tp11)
+tp11o= QueueingModel(tp11)
+summary(tp11o)
+```
+
+a)Calcule la cantidad promedio de máquinas que esperan su restablecimiento, o que están siendo restablecidas.
+```{r}
+L(tp11o)
+```
+**La cantidad promedio de máquinas que esperan su restablecimiento, o que están siendo restablecidas es de 1.250414**
+
+b)Calcule la probabilidad de que todas las máquinas estén trabajando.
+
+```{r}
+Pn(tp11o)
+```
+**La probabilidad de que todas las máquinas estén trabajando es de 0.33342**
+
+c)Determine el tiempo promedio que una máquina está sin trabajar.
+```{r}
+W(tp11o)
+```
+**El tiempo promedio que una máquina está sin trabajar es de 0.2501168 horas**
+
+
+## Ejercicio 12
+
+Metalco está contratando a un mecánico para un taller con 10 máquinas. Se están examinando a dos candidatos. El primero puede reparar 5 máquinas por hora y gana 15 por hora. El segundo candidato, más hábil, recibe 20 por hora y puede reparar 8 máquinas por hora. Metalco estima que por cada máquina descompuesta se pierden $50 por hora por falta de producción. Suponiendo que las máquinas se descomponen siguiendo una distribución de Poisson con una media de 3 por hora, y que el tiempo de reparación tiene distribución exponencial, ¿a cuál persona se debe contratar?
+
+* Sistema: taller, Clientes: máquinas que se descomponen, Servidores;2 mecánicos *
+
+* Tasa de llegadas ($\lambda$)= 5 máquinas por hora, el segundo 8 máquinas por hora *
+
+* Numero de servidores = 2 *
+
+* Tamaño de la cola = 10 *
+ 
+
+Calcule lo siguiente:
+```{r}
+mu=5/60
+lambda=3/60
+s=2
+mc=15/60 #15 pesos por hora
+mw=50/60  #Costo de máquina descompuesta
+L=lambda/(mu-lambda)
+L
+#Son maquinas del sistema
+```
+
+```{r}
+CTa=mc*1+mw*1.5
+print(CTa)
+```
+
+```{r}
+#Para el mecánico 2
+mub=8/60
+lambda=3/60
+s=2
+mcb=20/60 #recibe 20 pesos por hora
+mwb=50/60  #Costo máquina descompuesta
+L=lambda/(mub-lambda)
+#Máquinas en el sistema
+print(L)
+```
+
+```{r}
+CTa=mcb*1+mwb*0.6
+print(CTa)
+```
+**En conclusión, la mejor opción es contratar al segundo mecánico pues su costo esperado por hora es menor en comparación del mecánico 1**
+
+## Ejercicio 15
+El Forrest Manufacturing se ha asignado a un técnico el mantenimiento de tres máquinas. La distribución de  probabilidad del tiempo de operación de cada máquina antes de descomponerse es exponencial con media de 9 horas. El tiempo de reparación tambien tiene distribución exponencial con media de 2 horas.
+
+* Sistema: La empresa, Cliente: Máquinas, Servidores: Técnico *
+
+Tasa de llegada: ($\lambda$) = 1 
+Máquina cada 9 horas, Tasa de Servicio: 2 horas por máquina
+
+Número de servidores: 1
+Tamaño de la cola: 3
+
+a) Que modelo de colas se ajusta a este sistema?
+
+Modelo (M/M/1/K/K)
+
+b) Distribucion de probabilidad del número de maquina descompuestas y su media
+
+```{r}
+lambda = 1/9
+
+mu = 1/2
+
+library(queueing)
+t4p15<- NewInput.MM1KK(lambda = lambda, mu = mu, k = 3)
+CheckInput(t4p15)
+t4p15_o <- QueueingModel(t4p15)
+summary(t4p15_o )
+```
+
+```{r}
+Pn(t4p15_o)
+Pn
+```
+
+c) Use la media para calcular la distribucion de probabilidad del número de máquinas descompuestas y su media.
+
+```{r}
+W(t4p15_o) #La media es de 2.832 horas
+```
+
+d) Cuál es la fracción esperada de tiempo que el técnico está ocupando?

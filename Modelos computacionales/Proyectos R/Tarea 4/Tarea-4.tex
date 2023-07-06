@@ -1,0 +1,1431 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Tarea 4},
+  pdfauthor={Ricardo Gabriel Rodriguez Gonzalez},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Tarea 4}
+\author{Ricardo Gabriel Rodriguez Gonzalez}
+\date{2022-05-18}
+
+\begin{document}
+\maketitle
+
+\hypertarget{ejercicio-1}{%
+\subsection{Ejercicio 1}\label{ejercicio-1}}
+
+La tienda de alimentos Mom-and-Pop's tiene un estacionamiento
+peque\textasciitilde no con tres espacios reservados para los clientes.
+Si la tienda esta abierta los autos llegan y usan un espacio con una
+tasa media de 2 por hora. Para n = 0; 1; 2; 3, la probabilidad Pn de que
+haya exactamente n espacios ocupados es P0 = 0:1, P1 = 0:2, P2 = 0:4, P3
+= 0:3.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Describa la interpretación de este estacionamiento como un sistema de
+  colas. En particular, identifique los clientes y los servidores.
+\end{enumerate}
+
+\textbf{\emph{El sistema es el estacionamiento.Los clientes son los
+autos. Los servidores son los espacios disponibles}}
+
+¿Cuál es el servicio que se proporciona?
+
+\textbf{\emph{Los clientes van a la tienda de alimientos Mom-and-Pop's a
+comprar}}
+
+¿Qué constituye el tiempo de servicio?
+
+\textbf{\emph{El tiempo que pasa el cliente en la tienda (El tiempo que
+están estacionados)}}
+
+¿Cuál es la capacidad de la cola?
+
+\textbf{\emph{La cola son los espacios reservados de estacionamiento
+para los clientes de la tienda de alimientos Mom-and-Pop's. La capacidad
+de la cola es de 3 autos}}
+
+\begin{itemize}
+\tightlist
+\item
+  Determine las medidas de desempeño básicas: L,Lq, W y Wq de este
+  sistema de colas
+\end{itemize}
+
+Calculamos el número promedio de clientes en el sistema: \$L =
+\displaystyle\sum\_\{n = 0\}\^{}3 n* P\_n = 0\emph{P\_0 + 1}P\_1 +
+2\emph{P\_2 + 3}P\_3 = 0\emph{0.01 + 1}0.2+ 2\emph{0.4 + 3}0.3 = \$
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{Pn }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{L }\OtherTok{=} \FunctionTok{sum}\NormalTok{(n}\SpecialCharTok{*}\NormalTok{Pn)}
+\FunctionTok{print}\NormalTok{(L)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.9
+\end{verbatim}
+
+Calculamos el tamaño (número de clientes) de la cola:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s }\OtherTok{=} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\$L\_q = \displaystyle\sum\_\{n = 3\}\^{}\infty (n-s)*P\_n \$
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{Lq }\OtherTok{=} \FunctionTok{sum}\NormalTok{((n}\SpecialCharTok{{-}}\NormalTok{s)}\SpecialCharTok{*}\NormalTok{Pn[}\DecValTok{3}\NormalTok{])}\CommentTok{\# 0 Clientes en la cola}
+\FunctionTok{print}\NormalTok{(Lq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+*** Se esperan en promedio 0 autos en la cola. ***
+
+Calculamos el tiempo que un cliente está en el sistema:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda }\OtherTok{=} \DecValTok{2} \CommentTok{\# 2 espacios/hora}
+\end{Highlighting}
+\end{Shaded}
+
+\(W = L /\lambda = 1.9/2\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W }\OtherTok{=}\NormalTok{ L}\SpecialCharTok{/}\NormalTok{lambda }\CommentTok{\#0.95 horas = 57 minutos}
+\FunctionTok{print}\NormalTok{(W)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.95
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  El tiempo promedio que un auto pasa en el estacionamiento es de 57
+  minutos. *
+\end{itemize}
+
+Calculamos el tiempo en la cola: \$W\_q = L\_q/\lambda \$
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W\_q }\OtherTok{=}\NormalTok{ Lq}\SpecialCharTok{/}\NormalTok{lambda}
+\FunctionTok{print}\NormalTok{(W\_q)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{itemize}
+\item
+  El tiempo esperado que un auto pasa en la cola es de 0 horas. *
+\item
+  Use los resultados de b) para determinar el tiempo promedio que un
+  auto permanece en el espacio. \(W - W_q = 57 - 0 = 57\)
+\item
+  El tiempo promedio que un auto permanece en el espacio de
+  estacionamiento es de 57 minutos. *
+\end{itemize}
+
+\hypertarget{ejercicio-2}{%
+\subsection{Ejercicio 2}\label{ejercicio-2}}
+
+El Midtown Bank siempre tiene dos cajeras en servicio. Los clientes
+llegan a las cajas a una tasa media de 40 por hora. Una cajera requiere
+en promedio 2 minutos para servir a un cliente. Cuando ambas cajeras
+están ocupadas, el cliente que llega se une a una cola y espera a que lo
+atiendan. Por experiencia se sabe que los clientes esperan en la cola un
+promedio de 1 minuto antes de pasar a la caja.
+
+\begin{itemize}
+\item
+  Sistema: Banco, Clientes: clientes(personas) del banco, Servidores:
+  cajeras *
+\item
+  Tasa de llegadas (\(\lambda\)) = 40 clientes/hora = 40/60
+  clientes/minuto *
+\item
+  Tasa de servicio (\(\mu\))* = 2 minutos/cliente
+\item
+  Número de servidores = 2 *
+\item
+  Modelo: M/M/C *
+\item
+  Determine las medidas de desempeño básicas: \(W_q, W, L\) y \(L_q\) de
+  este sistema.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda }\OtherTok{=} \DecValTok{40}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{mu }\OtherTok{=} \DecValTok{2}
+\NormalTok{s }\OtherTok{=} \DecValTok{2}
+\FunctionTok{library}\NormalTok{(queueing)}
+\NormalTok{t4p3 }\OtherTok{\textless{}{-}} \FunctionTok{NewInput.MMC}\NormalTok{(}\AttributeTok{lambda =}\NormalTok{ lambda, }\AttributeTok{mu =}\NormalTok{ mu, }\AttributeTok{c =}\NormalTok{ s, }\AttributeTok{n =} \DecValTok{40}\NormalTok{)}
+\NormalTok{t4p3o }\OtherTok{\textless{}{-}} \FunctionTok{QueueingModel}\NormalTok{(t4p3)}
+\FunctionTok{summary}\NormalTok{(t4p3o)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      lambda mu c  k  m        RO        P0         Lq         Wq         X
+## 1 0.6666667  2 2 NA NA 0.1666667 0.7142857 0.00952381 0.01428571 0.6666667
+##           L         W Wqq Lqq
+## 1 0.3428571 0.5142857 0.3 1.2
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  El tiempo en la cola es: \$ = 0.01428571\$ minutos = . El tiempo en el
+  sistema: \$ W = 0.5142857 \$ Minutos = . El número de clientes en el
+  sistema : \(L = 0.3428571\) y El número de clientes en la fila:
+  \(L_q = 0.00952381\) *.
+\end{itemize}
+
+\hypertarget{ejercicio-3}{%
+\subsection{Ejercicio 3}\label{ejercicio-3}}
+
+\begin{verbatim}
+Una gasolinera cuenta con una bomba de gasolina. Los automoviles que desean cargar llegan segun un proceso de Poisson a una tasa media de 15 por hora. Sin embargo, si la bomba esta en operacion, los clientes potenciales pueden desistir (ir a otra gasolinera). En particular, si hay n autos en ella, la probabilidad de que un cliente potencial que llega desista es n=3 para n = 1; 2; 3. El tiempo necesario para servir un auto tiene distribucion exponencial con media de 4 minutos.
+\end{verbatim}
+
+\(\lambda_0 = 15\) \(\lambda_1 = 15 - (15*1/3) = 10\) \$\lambda\_2 = 15
+- (15*2/3) = 5 \$ \(\lambda_3 = 15 - (15*3/3) = 0\)
+\(\bar\lambda = \sum_{n = 0}^\infty \lambda_n P_n = \lambda_0P_P + \lambda_1P_1 + \lambda_2P_2 + \lambda_3P_3 = 8.33\)
+
+Calcular las \(P_n\) utilizando las ecuaciones de balance:
+
+\(\mu*P_1 = \lambda_0*P_0\)
+\(\lambda_0*P_0 + /mu*P_2 = (\lambda_1+\mu)*P_1\)
+\(\lambda_1*P_1 + /mu*P_3 = (\lambda_2+\mu)*P_2\)
+\(\lambda_2*P_2 + /mu*P_4 = (\lambda_3+\mu)*P_3\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{/}\DecValTok{15}
+\NormalTok{lambda\_0 }\OtherTok{=} \DecValTok{15}
+\NormalTok{lambda\_1 }\OtherTok{=} \DecValTok{10}
+\NormalTok{lambda\_2 }\OtherTok{=} \DecValTok{5}
+\NormalTok{lambda\_3 }\OtherTok{=} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambdabarra }\OtherTok{\textless{}{-}} \FloatTok{8.33}
+\end{Highlighting}
+\end{Shaded}
+
+a)Encuentre la distribución de probabilidad de estado estable del número
+de autos en la gasolinera.
+
+\$ L = \displaystyle\sum\_\{n=0\}\^{}\infty n P\_n = 0P\_0 + 1P\_1 +
+2P\_2 + 3P\_3 = 4/3 = 1.33\$
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{L }\OtherTok{=} \FloatTok{1.33}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Encuentre el tiempo de espera esperado (incluido el servicio) de los
+  automoviles que se quedan.
+\end{enumerate}
+
+\(W = L/\bar\lambda\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W }\OtherTok{=}\NormalTok{ L}\SpecialCharTok{/}\NormalTok{lambdabarra }\CommentTok{\# 0.159639 hora = 9.57 minutos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Sistema: Gasolinera, Clientes: autos, Servidores: 1 bomba de gasolina
+  *
+\item
+  Tasa de llegadas (\(\lambda\)) = 15 autos/hora *
+\item
+  Tasa de servicios (\(\mu\)) = media 4 minutos = 1/15 hora *
+\item
+  Número de servidores = 1 *
+\item
+  Modelo: M/M/1 *
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{15} \CommentTok{\#tasa de llegada}
+\NormalTok{mu }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{/}\DecValTok{15} \CommentTok{\# tasa de servicio}
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{1} 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ejercicio-4}{%
+\subsection{Ejercicio 4}\label{ejercicio-4}}
+
+Un departamento de una empresa tiene una operadora de procesador de
+textos. Los documentos que se producen en el se entre-gan para ser
+procesados de acuerdo con un proceso de Poisson con un tiempo esperado
+entre llegadas de 30 min. Cuando la operadora tiene solo un documento
+que procesar el tiempo esperado de servicio es de 20 minutos. Cuando hay
+mas de un documento, la ayuda de edicion reduce este tiempo a 15 min. En
+ambos casos, los tiempos de servicio tienen distribucion exponencial.
+
+\begin{itemize}
+\item
+  Sistema: Departamento, Clientes: documentos, Servidores: operadora *
+\item
+  Tasa de llegadas (\(\lambda\)) = 1 documento cada 30 min *
+\item
+  Tasa de servicios (\(\mu\)) = 20 minutos solo 1 documento, 15 minutos
+  mas de 1 documento *
+\item
+  Número de servidores = 1 *
+\item
+  Modelo: M/M/1 *
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Encuentre la distribucion de estado estable del numero de documentos
+  que la operadora ya recibio pero todavia no procesa Calcular las
+  \(P_n\) utilizando las ecuaciones de balance:
+\end{enumerate}
+
+\(\mu_1*P_1 = \lambda*P_0\)
+\(\lambda*P_0 + /mu_2*P_2 = (\lambda+\mu_1)*P_1\)
+\(\lambda*P_1 + /mu_2*P_3 = (\lambda+\mu_2)*P_2\)
+\(\lambda*P_2 + /mu_2*P_4 = (\lambda+\mu_2)*P_3\) \(\dots\)
+
+\(C_3 = \frac{\lambda\lambda\lambda}{\mu_1\mu_2\mu_3}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{/}\DecValTok{60} \CommentTok{\#2 por hora}
+\NormalTok{mu1 }\OtherTok{\textless{}{-}} \DecValTok{3}\SpecialCharTok{/}\DecValTok{60} \CommentTok{\#20 minutos hasta 1 documento}
+\NormalTok{mu2 }\OtherTok{\textless{}{-}} \DecValTok{4}\SpecialCharTok{/}\DecValTok{60} \CommentTok{\#15 minutos mas de 1 documento}
+
+\NormalTok{c1 }\OtherTok{\textless{}{-}}\NormalTok{ lambda}\SpecialCharTok{/}\NormalTok{mu1}
+\NormalTok{c2 }\OtherTok{\textless{}{-}}\NormalTok{ (lambda}\SpecialCharTok{*}\NormalTok{lambda)}\SpecialCharTok{/}\NormalTok{(mu1}\SpecialCharTok{*}\NormalTok{mu2)}
+\NormalTok{c3 }\OtherTok{\textless{}{-}}\NormalTok{ (lambda}\SpecialCharTok{*}\NormalTok{lambda}\SpecialCharTok{*}\NormalTok{lambda)}\SpecialCharTok{/}\NormalTok{(mu1}\SpecialCharTok{*}\NormalTok{mu2}\SpecialCharTok{*}\NormalTok{mu2)}
+
+\NormalTok{P0 }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(c1}\SpecialCharTok{+}\NormalTok{c2}\SpecialCharTok{+}\NormalTok{c3)}
+\NormalTok{P1 }\OtherTok{\textless{}{-}}\NormalTok{ c1}\SpecialCharTok{*}\NormalTok{P0}
+\NormalTok{P2 }\OtherTok{\textless{}{-}}\NormalTok{ c2}\SpecialCharTok{*}\NormalTok{P0}
+\NormalTok{P3 }\OtherTok{\textless{}{-}}\NormalTok{ c3}\SpecialCharTok{*}\NormalTok{P0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calcule L, Lq, W, Wq de este sistema.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pn }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(P0,P1,P2,P3)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{L }\OtherTok{=} \FunctionTok{sum}\NormalTok{(n}\SpecialCharTok{*}\NormalTok{Pn)}
+\FunctionTok{print}\NormalTok{(L) }\CommentTok{\# el numero de documentos promedio que llegan al sistema}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.571429
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{Lq }\OtherTok{=} \FunctionTok{sum}\NormalTok{((n}\SpecialCharTok{{-}}\NormalTok{s)}\SpecialCharTok{*}\NormalTok{Pn) }\CommentTok{\# el numero de documentos en la fila, esperando a ser procesados}
+\FunctionTok{print}\NormalTok{(Lq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.571429
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W }\OtherTok{=}\NormalTok{ L}\SpecialCharTok{/}\NormalTok{lambda}
+\FunctionTok{print}\NormalTok{(W)}\CommentTok{\# 2 dias, tiempo en el que se va a procesar el documento}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 47.14286
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Wq }\OtherTok{=}\NormalTok{  Lq}\SpecialCharTok{/}\NormalTok{lambda}
+\FunctionTok{print}\NormalTok{(Wq) }\CommentTok{\#tiempo que el documento va a esperar a ser procesado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 47.14286
+\end{verbatim}
+
+\hypertarget{ejercicio-5}{%
+\subsection{Ejercicio 5}\label{ejercicio-5}}
+
+\begin{itemize}
+\item
+  Sistema: peluquería, Clientes: personas, Servidores: peluquero *
+\item
+  Tasa de llegadas (\(\lambda\)) = 4 clientes por hora = 4/60*
+\item
+  Tasa de servicios (\(\mu\)) = 15 minutos por cliente = 4/60 *
+\item
+  Número de servidores = 1 *
+\item
+  Tamaño de la cola = 3 *
+\item
+  Modelo: M/M/1/K *
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu }\OtherTok{=} \DecValTok{4}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{lambda }\OtherTok{=} \DecValTok{4}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{s }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\FunctionTok{library}\NormalTok{(queueing)}
+\NormalTok{t4p5 }\OtherTok{\textless{}{-}} \FunctionTok{NewInput.MM1K}\NormalTok{(}\AttributeTok{lambda =}\NormalTok{ lambda, }\AttributeTok{mu =}\NormalTok{ mu, }\AttributeTok{k =} \DecValTok{4}\NormalTok{)}
+\FunctionTok{CheckInput}\NormalTok{(t4p5)}
+\NormalTok{t4p5o }\OtherTok{=} \FunctionTok{QueueingModel}\NormalTok{(t4p5)}
+\FunctionTok{summary}\NormalTok{(t4p5o)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       lambda         mu c k  m  RO  P0  Lq   Wq          X L    W Wqq Lqq
+## 1 0.06666667 0.06666667 1 4 NA 0.8 0.2 1.2 22.5 0.05333333 2 37.5  30   2
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Las probabilidades
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Pn}\NormalTok{(t4p5o)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2 0.2 0.2 0.2 0.2
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La cantidad esperada de clientes en la peluquería.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{L}\NormalTok{(t4p5o) }\CommentTok{\#La cantidad de clientes esperada es 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  la probabilidad de que los clientes se vayan a otra parte porque el
+  local está lleno.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  La probabilidad de que los clientes se vayan a otra parte porque el
+  local está lleno es de 0.2 *
+\end{itemize}
+
+\hypertarget{ejercicio-6}{%
+\section{Ejercicio 6}\label{ejercicio-6}}
+
+Juan Salas es alumno en la UAdeC. Hace trabajos extras para aumentar sus
+ingresos. Las peticiones de trabajo llegan en promedio cada 5 días, pero
+el tiempo entre ellas es exponencial. El tiempo para terminar un trabajo
+también es exponencial, con una media de 4 días.
+
+Sistema: Trabajos extras que hace Juan Salas, Clientes: Trabajos,
+Servidores: Juan Salas
+
+Tasa de llegadas (\(\lambda\)) = 1 trabajo cada 5 dias = 1.4 trabajos
+cada semana
+
+Tasa de servicio (\(\mu\)) = 1 trabajo para 4 días = 1.75 trabajos en
+una semana
+
+Numero de servidores = 1
+
+Modelo: M/M/1/K
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  ¿Cúal es la probabilidad de que le falte trabajo a Juan?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n}\OtherTok{=}\DecValTok{0}
+\NormalTok{lambda}\OtherTok{=} \FloatTok{1.4}
+\NormalTok{mu}\OtherTok{=} \FloatTok{1.75}
+\NormalTok{t4p6}\OtherTok{=} \FunctionTok{NewInput.MM1}\NormalTok{(}\AttributeTok{lambda=}\NormalTok{ lambda, }\AttributeTok{mu=}\NormalTok{ mu, }\AttributeTok{n=}\NormalTok{ n)}
+\FunctionTok{CheckInput}\NormalTok{(t4p6)}
+\NormalTok{t4p6o}\OtherTok{=} \FunctionTok{QueueingModel}\NormalTok{(t4p6)}
+\FunctionTok{summary}\NormalTok{(t4p6o)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   lambda   mu c  k  m  RO  P0  Lq       Wq   X L        W      Wqq Lqq
+## 1    1.4 1.75 1 NA NA 0.8 0.2 3.2 2.285714 1.4 4 2.857143 2.857143   5
+\end{verbatim}
+
+La probabilidad de que le falte trabajo es de 0.2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Si Juan cobra unos \$50 por cada trabajo, ¿cuál es su ingreso mensual
+  promedio?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mensual }\OtherTok{=} \DecValTok{30}\SpecialCharTok{/}\DecValTok{5} \CommentTok{\#6 trabajos cada mes}
+\NormalTok{ingmensual}\OtherTok{=} \DecValTok{50}\SpecialCharTok{*}\NormalTok{mensual}
+\FunctionTok{print}\NormalTok{(ingmensual)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Lq}\NormalTok{(t4p6o)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.2
+\end{verbatim}
+
+su ingreso mensual promedio es de \$300
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Si al final del semestre Juan decide subcontratar los trabajos
+  pendientes a \$40 cada uno, ¿cuánto debe esperar pagar en promedio?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pendientes}\OtherTok{=}\FunctionTok{Lq}\NormalTok{(t4p6o)}
+\NormalTok{pagar}\OtherTok{=}\DecValTok{40}\SpecialCharTok{*}\NormalTok{pendientes}
+\FunctionTok{print}\NormalTok{(pagar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 128
+\end{verbatim}
+
+debe esperar pagar en promedio es \$128
+
+\hypertarget{ejercicio-7}{%
+\section{Ejercicio 7}\label{ejercicio-7}}
+
+Las probabilidades de que hayan clientes en un sistema (M/M/1) :
+\((DG/5/∞)\) se ven en la tabla siguiente:
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+n & 0 & 1 & 2 & 3 & 4 \\
+\midrule
+\endhead
+Pn & 0.399 & 0.249 & 0.156 & 0.097 & 0.061 \\
+\bottomrule
+\end{longtable}
+
+La frecuencia de llegada \(λ\) es 5 clientes por hora. La rapidez del
+servicio \(μ\) es 8 clientes por hora. Calcule lo siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n0}\OtherTok{=}\DecValTok{0}
+\NormalTok{n1}\OtherTok{=}\DecValTok{1}
+\NormalTok{n2}\OtherTok{=}\DecValTok{2}
+\NormalTok{n3}\OtherTok{=}\DecValTok{3}
+\NormalTok{n4}\OtherTok{=}\DecValTok{4}
+\NormalTok{n5}\OtherTok{=}\DecValTok{5}
+\NormalTok{P0}\OtherTok{=}\FloatTok{0.399}
+\NormalTok{P1}\OtherTok{=}\FloatTok{0.249}
+\NormalTok{P2}\OtherTok{=}\FloatTok{0.156}
+\NormalTok{P3}\OtherTok{=}\FloatTok{0.097}
+\NormalTok{P4}\OtherTok{=}\FloatTok{0.061}
+\NormalTok{P5}\OtherTok{=}\FloatTok{0.038}
+\NormalTok{Sumatoria}\OtherTok{=}\FunctionTok{sum}\NormalTok{(P0,P1,P2,P3,P4)}
+\FunctionTok{print}\NormalTok{(Sumatoria)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.962
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  La probabilidad de que un cliente que llega pueda entrar al sistema.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(Sumatoria)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.962
+\end{verbatim}
+
+La probabilidad de que un cliente que llega pueda entrar al sistema es
+de 0.962.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La frecuencia con la que los clientes que llegan no pueden entrar al
+  sistema.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{frec}\OtherTok{=} \DecValTok{5}\SpecialCharTok{*}\FloatTok{0.038}
+\FunctionTok{print}\NormalTok{(frec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.19
+\end{verbatim}
+
+La frecuencia con la que los clientes que llegan no pueden entrar al
+sistema es de 0.19 clientes por hora.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La cantidad esperada de clientes en el sistema.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n0}\OtherTok{=}\DecValTok{0}
+\NormalTok{n1}\OtherTok{=}\DecValTok{1}
+\NormalTok{n2}\OtherTok{=}\DecValTok{2}
+\NormalTok{n3}\OtherTok{=}\DecValTok{3}
+\NormalTok{n4}\OtherTok{=}\DecValTok{4}
+\NormalTok{n5}\OtherTok{=}\DecValTok{5}
+\NormalTok{P0}\OtherTok{=}\FloatTok{0.399}\SpecialCharTok{*}\NormalTok{n0}
+\NormalTok{P1}\OtherTok{=}\FloatTok{0.249}\SpecialCharTok{*}\NormalTok{n1}
+\NormalTok{P2}\OtherTok{=}\FloatTok{0.156}\SpecialCharTok{*}\NormalTok{n2}
+\NormalTok{P3}\OtherTok{=}\FloatTok{0.097}\SpecialCharTok{*}\NormalTok{n3}
+\NormalTok{P4}\OtherTok{=}\FloatTok{0.061}\SpecialCharTok{*}\NormalTok{n4}
+\NormalTok{P5}\OtherTok{=}\FloatTok{0.038}\SpecialCharTok{*}\NormalTok{n5}
+\NormalTok{Ls}\OtherTok{=}\FunctionTok{sum}\NormalTok{(P0,P1,P2,P3,P4,P5)}
+\FunctionTok{print}\NormalTok{(Ls)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.286
+\end{verbatim}
+
+d)El tiempo promedio de espera en la cola.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lambda7}\OtherTok{\textless{}{-}}\NormalTok{(}\DecValTok{5}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{{-}0.038}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(Lambda7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Ws}\OtherTok{\textless{}{-}}\NormalTok{(Ls}\SpecialCharTok{/}\NormalTok{Lambda7)}
+\FunctionTok{print}\NormalTok{(Ws)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2673597
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Wq}\OtherTok{\textless{}{-}}\NormalTok{(Ws}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(Wq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1423597
+\end{verbatim}
+
+\hypertarget{ejercicio-8}{%
+\subsection{Ejercicio 8}\label{ejercicio-8}}
+
+El centro de computo de la UAdeC tiene cuatro computadoras principales
+identicas. La cantidad de usuarios en cualquier momento es de 25. Cada
+usuario puede solicitar un trabajo por una terminal, cada 15 minutos en
+promedio, pero el tiempo real entre solicitudes es exponencial. Los
+trabajos que llegan pasan en forma automatica a la primera computadora
+disponible. El tiempo de ejecucion por solicitud es exponencial, con un
+promedio de 2 minutos. Calcule lo siguiente:
+
+\begin{itemize}
+\item
+  Los clientes: Los usuarios. *
+\item
+  El sistema: El centro de cómputo. *
+\item
+  Los servidores: Las computadoras. *
+\item
+  Tasa de llegadas (\(\lambda\)): 1 trabajo cada 15 minutos *
+\item
+  Tasa de servicio (\(\mu\)): 1 trabajo cada 2 minutos = 30
+  trabajos/hora. *
+\item
+  Número de servidores: 4 *
+\item
+  Tamaño de la cola: 25 *
+\item
+  Tipo de cola: M/M/S/K/M * Calcule lo siguiente:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu }\OtherTok{=} \DecValTok{4}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{lambda }\OtherTok{=} \DecValTok{30}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{s }\OtherTok{\textless{}{-}} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t4p8a }\OtherTok{\textless{}{-}} \FunctionTok{NewInput.MMCK}\NormalTok{(}\AttributeTok{lambda =}\NormalTok{ lambda, }\AttributeTok{mu =}\NormalTok{ mu,}\AttributeTok{c =}\NormalTok{ s, }\AttributeTok{k =} \DecValTok{25}\NormalTok{)}
+\FunctionTok{CheckInput}\NormalTok{(t4p8a)}
+\NormalTok{t4p8ao }\OtherTok{\textless{}{-}} \FunctionTok{QueueingModel}\NormalTok{(t4p8a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t4p8b }\OtherTok{\textless{}{-}} \FunctionTok{NewInput.MMCKK}\NormalTok{(}\AttributeTok{lambda =}\NormalTok{ lambda, }\AttributeTok{mu =}\NormalTok{ mu,}\AttributeTok{c =}\NormalTok{ s, }\AttributeTok{k =} \DecValTok{25}\NormalTok{)}
+\FunctionTok{CheckInput}\NormalTok{(t4p8b)}
+\NormalTok{t4p8bo }\OtherTok{\textless{}{-}} \FunctionTok{QueueingModel}\NormalTok{(t4p8b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+
+## Warning in formals(fun): argument is not a function
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{CompareQueueingModels}\NormalTok{(t4p8ao,t4p8bo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   lambda         mu c  k  m        RO           P0       Lq       Wq         X
+## 1    0.5 0.06666667 4 25 NA 0.9999997 6.545554e-09 19.85715 74.46433 0.2666666
+## 2    0.5 0.06666667 4 25 NA 1.0000000 5.304813e-34 20.46667 76.75000 0.2666667
+##          L        W      Wqq      Lqq
+## 1 23.85715 89.46433 74.46443 19.85718
+## 2 24.46667 91.75000 76.75000 20.46667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t4p8c }\OtherTok{\textless{}{-}} \FunctionTok{NewInput.MMCKM}\NormalTok{(}\AttributeTok{lambda =}\NormalTok{ lambda, }\AttributeTok{mu =}\NormalTok{ mu, }\AttributeTok{k =}\NormalTok{ s, }\AttributeTok{m =} \DecValTok{25}\NormalTok{)}
+\FunctionTok{CheckInput}\NormalTok{(t4p8c)}
+\NormalTok{t4p8co }\OtherTok{\textless{}{-}} \FunctionTok{QueueingModel}\NormalTok{(t4p8c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(t4p8co)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   lambda         mu c k  m RO           P0       Lq       Wq          X
+## 1    0.5 0.06666667 1 4 25  1 1.034698e-09 2.993906 44.90859 0.06666667
+##          L        W      Wqq      Lqq
+## 1 3.993906 59.90859 44.90859 2.993906
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  La probabilidad de que un trabajo no se ejecute de inmediato al
+  solicitarlo.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hay que calcular la probabilidad }
+\FunctionTok{Pn}\NormalTok{(t4p8co)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.034698e-09 1.940060e-07 3.492107e-05 6.023885e-03 9.939410e-01
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  El tiempo promedio en el que el usuario obtiene sus resultados.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{W}\NormalTok{(t4p8co)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 59.90859
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  El tiempo promedio en el que el usuario obtiene su resultados es de 15
+  horas. *
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La cantidad promedio de trabajos que esperan su procesamiento.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Lq}\NormalTok{(t4p8co)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.993906
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  El porcentaje del tiempo durante el cual el centro de cómputo está
+  inactivo.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Calculamos la P0 (probabilidad de que haya cero clientes en el sistema)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  El porcentaje del tiempo durante el cual el centro de cómputo está
+  inactivo es 2.438265e-06\%. *
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  La cantidad promedio de computadoras ociosas.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{L}\NormalTok{(t4p8co) }\SpecialCharTok{{-}} \FunctionTok{Lq}\NormalTok{(t4p8co)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  El promedio todas las computadorads estarán ocupadas, por lo que no
+  habrá computadoras ociosas. *
+\end{itemize}
+
+\hypertarget{ejercicio-9}{%
+\subsection{Ejercicio 9}\label{ejercicio-9}}
+
+Eat \& Gas es una gasolinera con dos bombas. El carril que llega a ellas
+puede dar cabida cuando mucho a cinco automóviles, incluyendo los que
+llenan el tanque. Los que llegan cuando el carril está lleno van a otra
+parte. La distribución de los vehículos que llegan es de Poisson, con
+promedio de 20 por hora.
+
+El tiempo para llenar y pagar las compras es exponencial, con 6 minutos
+de promedio. \(\lambda=20\) vehiculos/hora \(\mu=1/6 * 60/1=10\)
+vehiculos/hora \(p=20/10=2\) \(N=5\) \(c=2\) \(p/c=2/2=1\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  El porcentaje de automóviles que llenarán el tanque en otro lado.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda}\OtherTok{=}\DecValTok{20}
+\NormalTok{mu}\OtherTok{=}\DecValTok{10}
+\NormalTok{N}\OtherTok{=}\DecValTok{5}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{p0}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{mu))))}
+\NormalTok{p5}\OtherTok{=}\NormalTok{p0}\SpecialCharTok{*}\NormalTok{(((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\DecValTok{2}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{5{-}2}\NormalTok{)))}
+
+\FunctionTok{print}\NormalTok{(p5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6666667
+\end{verbatim}
+
+\textbf{El 66.66\% de los vrhiculos llenan su taquen en otro lado}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  El porcentaje de tiempo en el que se usa una bomba.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda}\OtherTok{=}\DecValTok{20}
+\NormalTok{mu}\OtherTok{=}\DecValTok{10}
+\NormalTok{N}\OtherTok{=}\DecValTok{5}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{p0}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{mu))))}
+\NormalTok{p1}\OtherTok{=}\NormalTok{p0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{8}\SpecialCharTok{/}\DecValTok{3}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}
+\FunctionTok{print}\NormalTok{(p1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8888889
+\end{verbatim}
+
+\textbf{Se utiliza una bomba el 88.8\%} c) La utilización porcentual de
+las dos bombas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda}\OtherTok{=}\DecValTok{20}
+\NormalTok{mu}\OtherTok{=}\DecValTok{10}
+\NormalTok{N}\OtherTok{=}\DecValTok{5}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{p0}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{mu))))}
+\NormalTok{p5}\OtherTok{=}\NormalTok{p0}\SpecialCharTok{*}\NormalTok{(((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\DecValTok{2}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{5{-}2}\NormalTok{)))}
+\NormalTok{c1}\OtherTok{=}\NormalTok{((}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p5)}\SpecialCharTok{/}\FloatTok{7.5}\NormalTok{)}\SpecialCharTok{*}\NormalTok{lambda}
+\NormalTok{ct}\OtherTok{=}\NormalTok{c1}\SpecialCharTok{/}\NormalTok{s}
+\FunctionTok{print}\NormalTok{(ct)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4444444
+\end{verbatim}
+
+\textbf{El uso porcentual es 0.4444}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  La probabilidad de que un automóvil que llegue no reciba servicio de
+  inmediato, sino que se forme en la cola.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda}\OtherTok{=}\DecValTok{20}
+\NormalTok{mu}\OtherTok{=}\DecValTok{10}
+\NormalTok{N}\OtherTok{=}\DecValTok{5}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{p0}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{mu))))}
+\NormalTok{p1}\OtherTok{=}\NormalTok{p0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{8}\SpecialCharTok{/}\DecValTok{3}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}
+\NormalTok{pn}\OtherTok{=}\FunctionTok{abs}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p0}\SpecialCharTok{{-}}\NormalTok{p1)}
+\FunctionTok{print}\NormalTok{(pn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2222222
+\end{verbatim}
+
+\textbf{La probabilidad de no recibir servicio al llegar es de 22\%}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  La capacidad del carril que asegure que, en promedio, no haya más del
+  10\% de los vehículos que llegan se vayan a otra parte. estén
+  inactivas sea 0.05 o menos.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda}\OtherTok{=}\DecValTok{20}
+\NormalTok{mu}\OtherTok{=}\DecValTok{10}
+\NormalTok{N}\OtherTok{=}\DecValTok{5}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{p0}\OtherTok{=}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{mu))))}
+\NormalTok{lq}\OtherTok{=}\NormalTok{((p0}\SpecialCharTok{*}\NormalTok{((lambda}\SpecialCharTok{/}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(lambda}\SpecialCharTok{/}\NormalTok{mu)))}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1{-}2}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{wq}\OtherTok{=}\NormalTok{lq}\SpecialCharTok{/}\DecValTok{20}
+\FunctionTok{print}\NormalTok{(wq)}\CommentTok{\#El limite de clientes que se perdera es 0.06\%, con las condiciones actuales}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06666667
+\end{verbatim}
+
+\hypertarget{ejercicio-10}{%
+\subsection{Ejercicio 10}\label{ejercicio-10}}
+
+A los conductores nuevos se les pide pasar un examen por escrito, antes
+de hacer las pruebas de manejo. Los exámenes escritos suelen hacerse en
+el departamento de policía de la ciudad. Los registros de la ciudad de
+Springdale indican que la cantidad promedio de exámenes escritos es de
+100 por día de 8 horas. El tiempo necesario para contestar el examen es
+de 30 minutos, más o menos. Sin embargo, la llegada real de los
+aspirantes y el tiempo que tarda cada uno en contestar son totalmente
+aleatorios.
+
+Examenes escritos por hora \(100/8\) Tiempo de promedio por examenes
+\(30\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  La cantidad promedio de asientos que debe tener el departamento de
+  policía en el salón de exámenes. \(p=\lambda/\mu\)=\((100/8)/2\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p}\OtherTok{=}\NormalTok{(}\DecValTok{100}\SpecialCharTok{/}\DecValTok{8}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}
+\FunctionTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.25
+\end{verbatim}
+
+\textbf{la cantidad promedio de asientos es de 6.25 asi que debe de
+haber 7 asientos}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La probabilidad de que los aspirantes rebasen la cantidad promedio de
+  asientos que hay en el salón de exámenes.
+\end{enumerate}
+
+\(p_n>=8=1-(\sum6.25^1/1!*e^-6.23+\sum6.25^2/2!*e^-6.23+...+\sum6.25^7/7!*e^-6.23)\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{e}\OtherTok{=}\FloatTok{2.718281828}
+\NormalTok{pn}\OtherTok{=} \DecValTok{1}\SpecialCharTok{{-}}\NormalTok{((}\FloatTok{6.25}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.25}\NormalTok{)}\SpecialCharTok{+}\FloatTok{6.25}\SpecialCharTok{\^{}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.25+6.25}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{2}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23+6.25}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{/}\DecValTok{6}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23+6.25}\SpecialCharTok{\^{}}\DecValTok{4}\SpecialCharTok{/}\DecValTok{24}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23+6.25}\SpecialCharTok{\^{}}\DecValTok{5}\SpecialCharTok{/}\DecValTok{120}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23+6.25}\SpecialCharTok{\^{}}\DecValTok{6}\SpecialCharTok{/}\DecValTok{720}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23+6.25}\SpecialCharTok{\^{}}\DecValTok{7}\SpecialCharTok{/}\DecValTok{5040}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.23}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(pn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2770582
+\end{verbatim}
+
+La probabilidad de que los estudiantes rebasen el numero de asientos en
+el salon es de 0.27705 c) La probabilidad de que en un día no se haga
+examen alguno.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p0}\OtherTok{=}\FloatTok{6.25}\SpecialCharTok{\^{}}\DecValTok{0}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{*}\NormalTok{e}\SpecialCharTok{\^{}{-}}\FloatTok{6.25}
+\FunctionTok{print}\NormalTok{(p0)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.001930454
+\end{verbatim}
+
+la probabilidad de que no se presente ningun examen en un dia es de
+0.001930454
+
+\hypertarget{ejercicio-12}{%
+\subsection{Ejercicio 12}\label{ejercicio-12}}
+
+Metalco está contratando a un mecánico para un taller con 10 máquinas.
+Se están examinando a dos candidatos. El primero puede reparar 5
+máquinas por hora y gana 15 por hora. El segundo candidato, más hábil,
+recibe 20 por hora y puede reparar 8 máquinas por hora. Metalco estima
+que por cada máquina descompuesta se pierden \$50 por hora por falta de
+producción. Suponiendo que las máquinas se descomponen siguiendo una
+distribución de Poisson con una media de 3 por hora, y que el tiempo de
+reparación tiene distribución exponencial, ¿a cuál persona se debe
+contratar?
+
+Sistema: taller, Clientes: máquinas que se descomponen, Servidores;2
+mecánicos Tasa de llegadas (\(\lambda\))= 5 máquinas por hora, el
+segundo 8 máquinas por hora Numero de servidores= 2 Tamaño de la cola=10
+
+Calcule lo siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu}\OtherTok{=}\DecValTok{5}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{lambda}\OtherTok{=}\DecValTok{3}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{mc}\OtherTok{=}\DecValTok{15}\SpecialCharTok{/}\DecValTok{60} \CommentTok{\#15 pesos por hora}
+\NormalTok{mw}\OtherTok{=}\DecValTok{50}\SpecialCharTok{/}\DecValTok{60}  \CommentTok{\#Costo de máquina descompuesta}
+\NormalTok{L}\OtherTok{=}\NormalTok{lambda}\SpecialCharTok{/}\NormalTok{(mu}\SpecialCharTok{{-}}\NormalTok{lambda)}
+\NormalTok{L}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Son maquinas del sistema}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CTa}\OtherTok{=}\NormalTok{mc}\SpecialCharTok{*}\DecValTok{1}\SpecialCharTok{+}\NormalTok{mw}\SpecialCharTok{*}\FloatTok{1.5}
+\FunctionTok{print}\NormalTok{(CTa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Para el mecánico 2}
+\NormalTok{mub}\OtherTok{=}\DecValTok{8}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{lambda}\OtherTok{=}\DecValTok{3}\SpecialCharTok{/}\DecValTok{60}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}
+\NormalTok{mcb}\OtherTok{=}\DecValTok{20}\SpecialCharTok{/}\DecValTok{60} \CommentTok{\#recibe 20 pesos por hora}
+\NormalTok{mwb}\OtherTok{=}\DecValTok{50}\SpecialCharTok{/}\DecValTok{60}  \CommentTok{\#Costo máquina descompuesta}
+\NormalTok{L}\OtherTok{=}\NormalTok{lambda}\SpecialCharTok{/}\NormalTok{(mub}\SpecialCharTok{{-}}\NormalTok{lambda)}
+\CommentTok{\#Máquinas en el sistema}
+\FunctionTok{print}\NormalTok{(L)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CTa}\OtherTok{=}\NormalTok{mcb}\SpecialCharTok{*}\DecValTok{1}\SpecialCharTok{+}\NormalTok{mwb}\SpecialCharTok{*}\FloatTok{0.6}
+\FunctionTok{print}\NormalTok{(CTa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8333333
+\end{verbatim}
+
+\textbf{En conclusión, la mejor opción es contratar al segundo mecánico
+pues su costo esperado por hora es menor en comparación del mecánico 1}*
+
+\end{document}

@@ -1,0 +1,974 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Tarea 3},
+  pdfauthor={Ricardo Gabriel Rodriguez Gonzalez},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Tarea 3}
+\author{Ricardo Gabriel Rodriguez Gonzalez}
+\date{2022-03-16}
+
+\begin{document}
+\maketitle
+
+\#\#Ejercicio 1.
+
+Un agente de ventas realiza su trabajo en tres localidades A, B y C.
+Para evitar desplazamientos innecesarios está todo el día en la misma
+ciudad y allí pernocta, desplazándose a otra localidad al día siguiente,
+si no tiene suficiente trabajo. después de estar trabajando un día en C,
+la probabilidad de tener que seguir trabajando en ella al día siguiente
+es 0.4, la de tener que viajar a B es 0.4, y la de tener que ir a A es
+0.2. Si el viajante duerme un día en B, con probabilidad de 20\% tendrá
+que seguir trabajando en la misma localidad al día siguiente en el 60\%
+de los casos viajará a C mientras que irá a A con probabilidad 0.2. Por
+último si el agente de ventas trabaja todo un día en A, permanecerá en
+esa misma localidad, al día siguiente, con una probabilidad 0.1, irá a B
+con una probabilidad 0.3 y a C con una probabilidad de 0.6.
+
+\(X(t) =\)la ubicación del vendedor en el día t
+
+Los estados: \(M = {A,B,C}\) Correspondientes a las tres diferentes
+ciudades.
+
+Temporalidad: Por día
+
+\(\left[\begin{array}0 0.1,0.3,0.6\\0,2,0.2,0.6\\0.2,0.4,0.4\end{array}\right]\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(markovchain)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Package:  markovchain
+## Version:  0.8.6
+## Date:     2021-05-17
+## BugReport: https://github.com/spedygiorgio/markovchain/issues
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{,}\StringTok{"C"}\NormalTok{)}
+\NormalTok{mc\_p1 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.4}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{3}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\NormalTok{mc\_p1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain 
+##  A  3 - dimensional discrete Markov Chain defined by the following states: 
+##  A, B, C 
+##  The transition matrix  (by rows)  is defined as follows: 
+##     A   B   C
+## A 0.1 0.3 0.6
+## B 0.2 0.2 0.6
+## C 0.2 0.4 0.4
+\end{verbatim}
+
+Digarama de transición de estados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mc\_p1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-2-1.pdf} a) Si
+hoy el vendedor está en C, Cúal es la probabilidad de que tambíen tenga
+que trabajar en C al cabo de cuatro días?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Calculamos la matriz de 4 pasos}
+\NormalTok{mc\_p1}\SpecialCharTok{\^{}}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain^4 
+##  A  3 - dimensional discrete Markov Chain defined by the following states: 
+##  A, B, C 
+##  The transition matrix  (by rows)  is defined as follows: 
+##        A      B      C
+## A 0.1819 0.3189 0.4992
+## B 0.1818 0.3190 0.4992
+## C 0.1818 0.3174 0.5008
+\end{verbatim}
+
+\textbf{\emph{La probabilidad de que tambíen tenga que trabajar en C al
+cabo de cuatro días es 0.5008 o 50.08\% }}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Cuales son los porcentajes de días en los que el agente de ventas está
+  en cada una de las tres localidades?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p1}\SpecialCharTok{\^{}}\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           A         B         C
+## A 0.1818181 0.3181755 0.5000064
+## B 0.1818182 0.3181754 0.5000064
+## C 0.1818182 0.3181882 0.4999936
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p1}\SpecialCharTok{\^{}}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           A         B   C
+## A 0.1818182 0.3181818 0.5
+## B 0.1818182 0.3181818 0.5
+## C 0.1818182 0.3181818 0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p1}\SpecialCharTok{\^{}}\DecValTok{365}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           A         B   C
+## A 0.1818182 0.3181818 0.5
+## B 0.1818182 0.3181818 0.5
+## C 0.1818182 0.3181818 0.5
+\end{verbatim}
+
+\textbf{\emph{Los porcentajes de días en los que el agente de ventas
+está en cada una de las tres localidades son 18.18\%, 31.81\% y 50\%,
+respectivamente.}}
+
+\#\#Ejercicio 2.
+
+Mi variable aleatoria es: \(X(T) = {\)Inspección de una computadora en
+la hora t\(}\)
+
+Los estados: \(M = {"Trabajando","Descompuesta"}\) Dos estados.
+
+Temporalidad por hora.
+
+\(\left[\begin{array}0 0.95,0.05\\0,5,0.5\end{array}\right]\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Trabajando"}\NormalTok{,}\StringTok{"Descompuesta"}\NormalTok{)}
+\NormalTok{mc\_p2 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.95}\NormalTok{,}\FloatTok{0.05}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{2}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\NormalTok{mc\_p2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain 
+##  A  2 - dimensional discrete Markov Chain defined by the following states: 
+##  Trabajando, Descompuesta 
+##  The transition matrix  (by rows)  is defined as follows: 
+##              Trabajando Descompuesta
+## Trabajando         0.95         0.05
+## Descompuesta       0.50         0.50
+\end{verbatim}
+
+b)Encuentre el tiempo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{( }\FunctionTok{meanFirstPassageTime}\NormalTok{(mc\_p2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Trabajando Descompuesta
+## Trabajando            0           20
+## Descompuesta          2            0
+\end{verbatim}
+
+\#\#Ejercicio 3.
+
+Mi variable aleatoria es: \(X(T) =\)La posición de la partícula dentro
+de un circulot.
+
+Los estados: \$M = \{``0'',``1'',``2'',``3'',``4''\}\$5 estados
+correspondientes a los puntos marcados en el círculo.
+
+Temporalidad: Por paso
+\(\left[\begin{array}00,0.5,0,0,0.5\\0.5,0,0.5,0,0\\0,0.5,0,0.5,0\\0,0,0.5,0,0.5\\0.5,0,0,0.5,0\end{array}\right]\)
+
+a)Encuentre la matriz de transición(de un paso)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{,}\StringTok{"4"}\NormalTok{)}
+\NormalTok{mc\_p3 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{5}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\FunctionTok{plot}\NormalTok{(mc\_p3)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-7-1.pdf} b)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#elevar matriz a diferentes potencias}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#utilizar la funcion de steadyStates() y comparar con inciso anterior}
+\end{Highlighting}
+\end{Shaded}
+
+\#\#Ejercicio 4.
+
+Mi variable aleatoria es: \(X(T) =\)La ubicación en la cuadrícula en el
+lanzamiento t
+
+Los estados: \(M = {"A","B","C","D"}\) 4 estados correspondientes a las
+casillas.
+
+Temporalidad: por lanzamiento
+\(\left[\begin{array}0 1/6,2/6,2/6,1/6\\1/6,1/6,2/6,2/6\\2/6,1/6,1/6,2/6\\2/6,2/6,1/6,1/6\end{array}\right]\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"D"}\NormalTok{)}
+\NormalTok{mc\_p4 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{2}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{4}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\NormalTok{mc\_p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain 
+##  A  4 - dimensional discrete Markov Chain defined by the following states: 
+##  A, B, C, D 
+##  The transition matrix  (by rows)  is defined as follows: 
+##           A         B         C         D
+## A 0.1666667 0.3333333 0.3333333 0.1666667
+## B 0.1666667 0.1666667 0.3333333 0.3333333
+## C 0.3333333 0.1666667 0.1666667 0.3333333
+## D 0.3333333 0.3333333 0.1666667 0.1666667
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Exprese el problema como una cadena de markov.
+\end{enumerate}
+
+\textbf{\emph{INCLUIR PRUEBA DE PROPIEDAD MARKOVIANA}}
+
+b)Determine la ganancia o pérdida despues de lanzar el dado 5 veces
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Se calcula la matriz de 5 pasos}
+\NormalTok{m5p4 }\OtherTok{\textless{}{-}}\NormalTok{ mc\_p4}\SpecialCharTok{\^{}}\DecValTok{5}
+\FunctionTok{print}\NormalTok{(m5p4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           A         B         C         D
+## A 0.2502572 0.2497428 0.2497428 0.2502572
+## B 0.2502572 0.2502572 0.2497428 0.2497428
+## C 0.2497428 0.2502572 0.2502572 0.2497428
+## D 0.2497428 0.2497428 0.2502572 0.2502572
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calcular la ganancia/pérdida esperados}
+\NormalTok{Ct }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{6}\NormalTok{,}\DecValTok{9}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{sum}\NormalTok{(m5p4}\SpecialCharTok{*}\NormalTok{Ct))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\textbf{\emph{La ganancia esperada despues de lanzr el dado 5 veces es
+de \$5}}
+
+\#\#Ejercicio 5.
+
+Mi variable aleatoria es: \(X(T) =\)El paso de cal 1 de un estudiante
+
+Los estados:
+\(M = {"Modulo 1","Modulo 2","Modulo 3","Modulo 4","Cal 2"}\) 5 Modulos
+de cal 1 e inicio de cal 2.
+
+Temporalidad: por mes(4 Semanas)
+\(\left[\begin{array}0 0.8,0.2,0,0,0\\0,0.78,0.22,0,0\\0,0,0.75,0.25,0\\0,0,0,0.7,0.3\\0,0,0,0,1\end{array}\right]\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Exprese el problema como una cadena de Markov. \textbf{\emph{Propiedad
+  markoviana para los 5 estados }}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(markovchain)}
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Modulo 1"}\NormalTok{,}\StringTok{"Modulo 2"}\NormalTok{,}\StringTok{"Modulo 3"}\NormalTok{,}\StringTok{"Modulo 4"}\NormalTok{,}\StringTok{"Cal 2"}\NormalTok{)}
+\NormalTok{mc\_p5 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.78}\NormalTok{,}\FloatTok{0.22}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.75}\NormalTok{,}\FloatTok{0.25}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{5}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\NormalTok{mc\_p5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain 
+##  A  5 - dimensional discrete Markov Chain defined by the following states: 
+##  Modulo 1, Modulo 2, Modulo 3, Modulo 4, Cal 2 
+##  The transition matrix  (by rows)  is defined as follows: 
+##          Modulo 1 Modulo 2 Modulo 3 Modulo 4 Cal 2
+## Modulo 1      0.8     0.20     0.00     0.00   0.0
+## Modulo 2      0.0     0.78     0.22     0.00   0.0
+## Modulo 3      0.0     0.00     0.75     0.25   0.0
+## Modulo 4      0.0     0.00     0.00     0.70   0.3
+## Cal 2         0.0     0.00     0.00     0.00   1.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mc\_p5)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+b)En promedio, un estudiante que inicio el modulo 1 al principio el
+semestre actual ¿será capaz de llevar el módulo 2 el siguiente semestre?
+(El cal 1 es un prerrequisito para el cal 2)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Debemos obtener la matriz a 5 pasos}
+\FunctionTok{print}\NormalTok{(mc\_p5}\SpecialCharTok{\^{}}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Modulo 1  Modulo 2  Modulo 3  Modulo 4     Cal 2
+## Modulo 1  0.32768 0.3896256 0.2062455 0.0631499 0.0132990
+## Modulo 2  0.00000 0.2887174 0.3770268 0.2262319 0.1080239
+## Modulo 3  0.00000 0.0000000 0.2373047 0.3461734 0.4165219
+## Modulo 4  0.00000 0.0000000 0.0000000 0.1680700 0.8319300
+## Cal 2     0.00000 0.0000000 0.0000000 0.0000000 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# La probabilidad que nos interesa es modulo 1 {-}\textgreater{} modulo 2}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{En promedio, un estudiante que que inició el modulo 1 al
+principio del semestre actual será capaz de llevar el módulo 2 el
+siguiente semestre con una probabilidad de 0.3896 }}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Un estudiante que haya completado sólo un módulo el semestre anterior
+  ¿será capaz de terminar el cal 1 al final del semestre actual?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Como el terminar cal 1 quiere decir que llegara al estado cal 2. Y como cal 2 es un estado absorbente, calculamos la probabilidad de absorbencia.}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{absorptionProbabilities}\NormalTok{(mc\_p5))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Cal 2
+## Modulo 1     1
+## Modulo 2     1
+## Modulo 3     1
+## Modulo 4     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{meanAbsorptionTime}\NormalTok{(mc\_p5))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Modulo 1  Modulo 2  Modulo 3  Modulo 4 
+## 16.878788 11.878788  7.333333  3.333333
+\end{verbatim}
+
+\textbf{\emph{El 1.3\% de los estudiantes que hayan completado el modulo
+1 al principio del semestre será capaz de terminar el cal 1 al final de
+semestre actual.El 10.80\% de los estudiantes que hayan completado el
+modulo 2 al principio del semestre será capaz de terminar el cal 1 al
+final de semestre actual. El 41.6\% de los estudiantes que hayan
+completado el modulo 3 al principio del semestre será capaz de terminar
+el cal 1 al final de semestre actual. El 83.1\% de los estudiantes que
+hayan completado el modulo 4 al principio del semestre será capaz de
+terminar el cal 1 al final de semestre actual.}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  ¿Recoienda aplicar la idea del módulo a otras materias básicas?
+  Explique.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \FunctionTok{print}\NormalTok{(}\FunctionTok{steadyStates}\NormalTok{(mc\_p5))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Modulo 1 Modulo 2 Modulo 3 Modulo 4 Cal 2
+## [1,]        0        0        0        0     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p5}\SpecialCharTok{\^{}}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Modulo 1   Modulo 2   Modulo 3   Modulo 4     Cal 2
+## Modulo 1 0.1073742 0.24016424 0.26342485 0.19084901 0.1981877
+## Modulo 2 0.0000000 0.08335776 0.19832445 0.23385656 0.4844612
+## Modulo 3 0.0000000 0.00000000 0.05631351 0.14032995 0.8033565
+## Modulo 4 0.0000000 0.00000000 0.00000000 0.02824752 0.9717525
+## Cal 2    0.0000000 0.00000000 0.00000000 0.00000000 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p5}\SpecialCharTok{\^{}}\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Modulo 1   Modulo 2   Modulo 3    Modulo 4     Cal 2
+## Modulo 1 0.03518437 0.11117534 0.17520575 0.184380155 0.4940544
+## Modulo 2 0.00000000 0.02406684 0.07849143 0.126817112 0.7706246
+## Modulo 3 0.00000000 0.00000000 0.01336346 0.043079498 0.9435570
+## Modulo 4 0.00000000 0.00000000 0.00000000 0.004747562 0.9952524
+## Cal 2    0.00000000 0.00000000 0.00000000 0.000000000 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p5}\SpecialCharTok{\^{}}\DecValTok{120}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Modulo 1     Modulo 2     Modulo 3     Modulo 4 Cal 2
+## Modulo 1 2.348543e-12 2.235991e-11 9.511191e-11 2.326957e-10     1
+## Modulo 2 0.000000e+00 1.125518e-13 8.179211e-13 2.542022e-12     1
+## Modulo 3 0.000000e+00 0.000000e+00 1.017072e-15 5.084068e-15     1
+## Modulo 4 0.000000e+00 0.000000e+00 0.000000e+00 2.580862e-19     1
+## Cal 2    0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00     1
+\end{verbatim}
+
+\#Ejercicio 6. Un fabricante de videograbadoras está tan seguro de su
+calidad que ofrece garantía de reposición total si un aparato falla
+dentro de los dos primeros años. Con base en datos compilados, la
+compañía ha notado que sólo 1\% de sus grabadoras fallan durante el
+primer año, mientras que 5\% de ellas sobreviven el primer año pero
+fallan durante el segundo. La garantía no cubre grabadoras ya
+reemplazadas.
+
+a)Formule la evolución del estado de una grabadora como una cadena de
+Markov cuyos estados incluyen dos estados absorbentes que representan la
+necesidad de cubrir la garantía o el hecho de que una grabadora
+sobreviva el periodo de garantía. Después construya la matriz de
+transición (de un paso).
+
+b)Encuentre la probabilidad de que el fabricante tenga que cubrir una
+garantía.
+
+\#\#Ejercicio 7.
+
+Mi variable aleatoria es: \(X(T) =\)La ubicación donde se enccuentra un
+auto
+
+Los estados: \(M = {"Phoenix","Denver","Chicago","Atlanta"}\) 4
+estados/ciudades.
+
+Temporalidad: Por semana
+\(\left[\begin{array}0 0,0.2,0.6,0.2\\0,0,0.6,0.4\\0,0.5,0,0.5\\0.1,0.1,0.8,0\end{array}\right]\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Exprese la situación como una cadena de Markov.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Phoenix"}\NormalTok{,}\StringTok{"Denver"}\NormalTok{,}\StringTok{"Chicago"}\NormalTok{,}\StringTok{"Atlanta"}\NormalTok{)}
+\NormalTok{mc\_p7 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{(}\StringTok{"markovchain"}\NormalTok{,}\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{0}\NormalTok{),}\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow =} \DecValTok{4}\NormalTok{,}\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames,statesNames)))}
+\FunctionTok{print}\NormalTok{(mc\_p7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Phoenix Denver Chicago Atlanta
+## Phoenix     0.0    0.2     0.6     0.2
+## Denver      0.0    0.0     0.6     0.4
+## Chicago     0.0    0.5     0.0     0.5
+## Atlanta     0.1    0.1     0.8     0.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mc\_p7)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(mc\_p7))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain  Markov chain that is composed by: 
+## Closed classes: 
+## Phoenix Denver Chicago Atlanta 
+## Recurrent classes: 
+## {Phoenix,Denver,Chicago,Atlanta}
+## Transient classes: 
+## NONE 
+## The Markov chain is irreducible 
+## The absorbing states are: NONE
+## $closedClasses
+## $closedClasses[[1]]
+## [1] "Phoenix" "Denver"  "Chicago" "Atlanta"
+## 
+## 
+## $recurrentClasses
+## $recurrentClasses[[1]]
+## [1] "Phoenix" "Denver"  "Chicago" "Atlanta"
+## 
+## 
+## $transientClasses
+## list()
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Si la agencia inicia la semana con 100 autos en cada lugar, ¿cómo será
+  la distribucion en dos semanas?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mc\_p7}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Phoenix Denver Chicago Atlanta
+## Phoenix    0.02   0.32    0.28    0.38
+## Denver     0.04   0.34    0.32    0.30
+## Chicago    0.05   0.05    0.70    0.20
+## Atlanta    0.00   0.42    0.12    0.46
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{autos }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(autos}\SpecialCharTok{*}\NormalTok{(mc\_p7}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Phoenix Denver Chicago Atlanta
+## [1,]      11    113     142     134
+\end{verbatim}
+
+\textbf{\emph{La distribución después de dos semanas será de 11, 113,
+142y 134 autos para cada ciudad Phoenix, Denver, Chicago y Atlanta,
+respectivamente}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Si cada lugar está diseñado para manejar un máximo de 110 autos,
+  ¿habría a la larga un problema de disponibilidad de espacio en
+  cualquiera de los lugares?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{probEstadoEstable }\OtherTok{\textless{}{-}} \FunctionTok{steadyStates}\NormalTok{(mc\_p7)}
+\FunctionTok{print}\NormalTok{(autos}\SpecialCharTok{*}\NormalTok{probEstadoEstable)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Phoenix   Denver  Chicago  Atlanta
+## [1,] 3.108348 24.42274 41.38544 31.08348
+\end{verbatim}
+
+\textbf{\emph{A la larga no habria un problema de disponibilidad de
+espacio en cualquiera de los lugares.}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Determine el promedioi de semanas que transcurren antes de que un auto
+  regrese a su lugar de origen.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{meanRecurrenceTime}\NormalTok{(mc\_p7))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Phoenix    Denver   Chicago   Atlanta 
+## 32.171429  4.094545  2.416309  3.217143
+\end{verbatim}
+
+\textbf{\emph{El promedio de semanas que transcurren antes de que un
+auto regrese a su lugar de origen es de 32, 4, 2 y 3 semanas,
+respectivamente }}
+
+\#\#Ejercicio 12.
+
+Mi variable aleatoria es: \(X(T) =\)La ubicación donde se enccuentra un
+auto
+
+Los estados: \(M = {"Phoenix","Denver","Chicago","Atlanta"}\) 4
+estados/ciudades.
+
+Temporalidad: Por año
+\(\left[\begin{array}0 0,0.2,0.6,0.2\\0,0,0.6,0.4\\0,0.5,0,0.5\\0.1,0.1,0.8,0\end{array}\right]\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Buena"}\NormalTok{,}\StringTok{"Regular"}\NormalTok{,}\StringTok{"Mala"}\NormalTok{)}
+\NormalTok{p\_p12 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{ (}\StringTok{"markovchain"}\NormalTok{, }\AttributeTok{transitionMatrix =}\NormalTok{ matrix }
+\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{ , }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames, statesNames)))}
+\FunctionTok{plot}\NormalTok{(p\_p12)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(p\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain  Markov chain that is composed by: 
+## Closed classes: 
+## Mala 
+## Recurrent classes: 
+## {Mala}
+## Transient classes: 
+## {Buena},{Regular}
+## The Markov chain is not irreducible 
+## The absorbing states are: Mala
+## $closedClasses
+## $closedClasses[[1]]
+## [1] "Mala"
+## 
+## 
+## $recurrentClasses
+## $recurrentClasses[[1]]
+## [1] "Mala"
+## 
+## 
+## $transientClasses
+## $transientClasses[[1]]
+## [1] "Buena"
+## 
+## $transientClasses[[2]]
+## [1] "Regular"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{statesNames }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Buena"}\NormalTok{,}\StringTok{"Regular"}\NormalTok{,}\StringTok{"Mala"}\NormalTok{)}
+\NormalTok{p1\_p12 }\OtherTok{\textless{}{-}} \FunctionTok{new}\NormalTok{ (}\StringTok{"markovchain"}\NormalTok{, }\AttributeTok{transitionMatrix =} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.05}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.55}\NormalTok{), }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{ , }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(statesNames, statesNames)))}
+
+\FunctionTok{plot}\NormalTok{(p1\_p12)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Tarea-3_files/figure-latex/unnamed-chunk-20-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(p1\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unnamed Markov chain  Markov chain that is composed by: 
+## Closed classes: 
+## Buena Regular Mala 
+## Recurrent classes: 
+## {Buena,Regular,Mala}
+## Transient classes: 
+## NONE 
+## The Markov chain is irreducible 
+## The absorbing states are: NONE
+## $closedClasses
+## $closedClasses[[1]]
+## [1] "Buena"   "Regular" "Mala"   
+## 
+## 
+## $recurrentClasses
+## $recurrentClasses[[1]]
+## [1] "Buena"   "Regular" "Mala"   
+## 
+## 
+## $transientClasses
+## list()
+\end{verbatim}
+
+a)¿Cúales son los tiempos esperados de recurrencia de cada estado?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#para la matriz P}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{meanRecurrenceTime}\NormalTok{(p\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mala 
+##    1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#para la matriz P1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{meanRecurrenceTime}\NormalTok{(p1\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Buena  Regular     Mala 
+## 9.833333 1.903226 2.681818
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Un jardín necesita dos sacos de fetilizante si la tierra es buena. La
+  cantidad se incrementa en 25\% si la tierra es regular, y 60\% si la
+  tierra es mala. El costo del fertilizante es de \$50 por saco. El
+  jardinero estima un rendimiento anual de \$250 si no se utiliza
+  fertilizante,
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{costos}\OtherTok{\textless{}{-}} \DecValTok{50}\SpecialCharTok{*}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{1.25}\NormalTok{,}\FloatTok{1.6}\NormalTok{)}
+\NormalTok{rendimientoAnualSF }\OtherTok{\textless{}{-}} \DecValTok{250} \CommentTok{\#sin fertilizante}
+\NormalTok{rendimientoAnualCF }\OtherTok{\textless{}{-}} \DecValTok{420} \CommentTok{\#sin fertilizante}
+\CommentTok{\#print(sum(costos*steadyStates(p1\_p12)))}
+
+\FunctionTok{print}\NormalTok{(rendimientoAnualCF }\SpecialCharTok{{-}} \FunctionTok{sum}\NormalTok{(costos}\SpecialCharTok{*}\FunctionTok{steadyStates}\NormalTok{(p1\_p12)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 352.2458
+\end{verbatim}
+
+\textbf{\emph{Es redituable utilizar fertilizante porque el rendimiento
+anual seria de \$352 que es mayor a \$250 sin utilizar fertilizante.}}
+
+c)Considere la matrix de transicion del jardinero con fertilizantes,
+ccalcule el tiempo esperado de primera pasada desde los estados 2 y 3
+(regular y mala) al estado 1 (bueno).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{meanFirstPassageTime}\NormalTok{(p1\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Buena  Regular     Mala
+## Buena    0.00000 1.774194 4.545455
+## Regular 12.50000 0.000000 3.636364
+## Mala    13.33333 2.419355 0.000000
+\end{verbatim}
+
+\textbf{\emph{El tiempo esperado desde el estado Regular a buena es de
+12.5 años y de Mala a Regular es de 13.3 años.}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Considere la matriz de transicion del jardinero sin fertilizantes,
+  calcule la probabilidad de absorcion al estado 3 (condición de tierra
+  mala).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{absorptionProbabilities}\NormalTok{(p\_p12))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Mala
+## Buena      1
+## Regular    1
+\end{verbatim}
+
+\end{document}

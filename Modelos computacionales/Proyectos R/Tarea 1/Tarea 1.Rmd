@@ -1,0 +1,439 @@
+---
+title: "Tarea 1"
+author: "Ricardo Gabriel Rodriguez Gonzalez"
+date: "2/2/2022"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+**Ejercicio 1.-
+Se tiene el caso de tirar un dado no cargado. Defina lo siguiente:**
+
+a) ¿Cual es la variable aleatoria que representa la cara del dado que sale hacia arriba?
+```{r}
+w <- c(1:6)
+print(w)
+```
+
+b) ¿Cual es la fdp?
+```{r}
+fdp <- 1/6
+print(fdp)
+```
+c) ¿Y cual es la FDA?
+```{r}
+FDA <- function(x){
+  sum(x*fdp)
+}
+print(FDA)
+```
+d) Calcule la media y la varianza.
+```{r}
+#La media se calcula como sigue:
+media <- sum(w)/length(w)
+print(media)
+```
+```{r}
+varianza <- ((w - media)^2)/length(w)
+print(varianza)
+```
+>*Se resolvio con uniforme discreta*
+
+**Ejercicio 2.- 
+Una aguja de longitud l tiene un pivote en el centro de un circulo, cuyo diametro es igual a l. Defina lo siguiente:**
+a)	¿Cuál es la variable aleatoria que representa la posición de la aguja?
+
+x es la variable aleatoria continua que representa la posición de la aguja, $0 \le x^2 * pi$
+
+```{r}
+x <- 1*pi
+print(x)
+```
+b)	¿Cuál es la fdp?
+```{r}
+fdp <- 1/(2*pi)
+print(fdp)
+```
+c)¿Y cuál es la FDA?
+
+```{r}
+FDA <- x/(2*pi)
+print(FDA)
+```
+d) Calcule la media y la varianza
+
+```{r}
+#media <- l*pi
+
+#varianza <- (x - l*pi)^2* 1/(2*pi) dx
+#x^2 - 2*x*l*pi + l^2*pi^2
+
+#[x^3/3 - x^2*l*pi + l^2*pi^2*x][1/(2*pi)]
+#[(8*pi^3)/3 - 4*pi^2*l*pi + l^2*pi^2*2*pi]
+#(4*pi^2)/3 - 2*(pi^2)*l + (l^2)*pi^2 
+
+```
+**Ejercicio 3.-
+Las labores diarias de John Doe requieren hacer 10 viajes redondos por automóvil entre dos ciudades. Una vez que realiza los 10 viajes, el señor Doe puede descansar el resto del día, una motivación suficientemente buena para exceder el límite de velocidad. La Experiencia muestra que hay un 40% de probabilidad de ser multado por exceso de velocidad en cualquier viaje redondo.**
+
+a) ¿Cuál es la probabilidad de que el día termine sin una multa por exceso de velocidad?
+
+
+>P = probabilidad de multa
+
+>10 = numero de pruebas
+
+>x = no hay multas
+
+```{r echo=TRUE}
+dbinom(0,10,0.4)
+```
+b) Si cada multa por exceso de velocidad es de $80, ¿cuál es la multa diaria promedio?
+
+```{r echo=TRUE}
+x<-10*0.4*80
+print(x)
+```
+>*Se resolvio con distribucion Binomial*
+
+**Ejercicio 4.-  
+A un taller de reparacion de motores pequenos llegan, trabajos de reparacion a razon de 10 por dia.**
+a)  ¿Cual es el numero promedio de trabajos que se reciben a diario en el taller?
+
+>x = Trabajos (discreta)
+
+$\lambda$ = llegadas
+
+Formulamos $\lambda$
+```{r}
+lambda= (10*1)/8
+	print(lambda)
+```
+
+b)  ¿Cual es la probabilidad de que no lleguen trabajos durante cualquier hora,  suponiendo que el taller esta abierto 8 horas al dıa?
+
+Teniendo el valor de $\lambda$ ,la probabilidad de que no lleguen trabajos durante cualquier hora es:
+```{r}
+dpois(0,1.25,log = FALSE) 
+```
+>*Se resolvio con distribucion Poisson*
+
+**Ejercicio 5.-
+Los automóviles llegan al azar a una gasolinera.El tiempo promedio entre llegadas es de 2 minutos. Determine la probabilidad de que el tiempo entre llegadas no exceda de 1 minuto**
+
+```{r echo=TRUE}
+x<-pexp(1,1/2)
+print(x)
+```
+>*Se resolvio con Exponencial continua*
+
+**Ejercicio 6.- 
+Los datos siguientes representan el periodo (en segundos) necesarios para transmitir un mensaje. Construya un histograma de frecuencia adecuado para los datos.**
+```{r}
+
+x <- c(25.8,47.9,17.8,48.2,5.8, 77.4,5.6,89.3, 
+        89.5,38.7,67.3,94.8,34.7,35.8,70.9,66.1,36.4,39.2,58.6,
+        71.3,35.2,61.3,56.4,65.3,88.9,23.9,93.5,78.7,12.8,21.1, 
+        36.4,59.3,22.1,30.1,76.4,23.8,36.4,51.9,28.6, 35.9,58.7,
+        93.4,48.1,72.5,17.3,36.8,76.7,63.6,82.7,29.2)
+```
+
+hist(x, breaks ="Sturges")
+```{r echo=TRUE}
+hist(x, col ="green", main = "Transmitir Mensaje",
+       xlab= "Segundos", ylab ="Frecuencia")
+```
+
+**Ejercicio 7.-
+Si la probabilidad de acertar en un blanco es 1/5 y se hacen 10 disparos de forma independiente**
+
+Es variable Binomial Discreta.
+
+$x=n$ de aciertos en el blanco
+$x ->binomial(n=10,p=0.2)\Rightarrow  q=99.8$
+#dbinom(x,n,p)
+
+
+ ¿Cual es la probabilidad de acertar por lo menos dos veces?
+
+La probabilidad de que acerte almenos 2 veces es:
+
+```{r}
+x<-c(2:10)
+sum(dbinom(x,10,0.2))
+
+```
+ > *Se resolvio con distribucion Binomial*
+ 
+**Ejercicio 8.- 
+Las ventas de combustible en una gasolinera tienen una media de 40,000 litros por dıa y un mınimo de 30,000 litros por dıa. Suponga que una distribucion uniforme es apropiada.**
+
+La variable aleatoria son los litros
+Distribucion uniforme continua
+
+
+a) Determine las ventas maximas diarias.
+```{r}
+media <- 40000
+a<-30000
+b<-(media*2)-30000
+print(b)
+#Es la cantidad maxima de ventas
+```
+
+b) ¿Que porcentaje de dıas las ventas excederan de 34,000 litros?
+```{r}
+b<-50000
+a<-30000
+fdp <- 1/(b-a)
+print(fdp)
+```
+
+$$\int ^b _x  f(x) dx = F(x)|^b _x $$
+
+
+$$\int ^b _x 5e-05  dx = 5e-05|^b _x $$
+
+>Dias que se exeden los 34,000 litros:
+
+```{r}
+fda<- (5e-05*50000)-(5e-05*34000)
+print(fda)
+```
+
+ > *Se resolvio con uniforme continua*
+ 
+**Ejercicio 9.-
+Una variable aleatoria continua X se distribuye uniformemente en el intervalo [2 , 4].**
+
+
+a) Determine la funcion de distribucion, valor esperado y varianza.
+
+x = variable aleatoria continua
+
+
+```{r}
+#fdp:
+b<-4
+a<-2
+fdp  <- 1/(b-a)
+print(fdp)
+
+#calculamos la media:
+media <- (b+a)/2
+#La media es: 
+print(media)
+
+#Varianza es:
+varianza <- (b - a)^2/12
+print(varianza)
+```
+b) Para dicha variable, calcule las probabilidades:
+
+i) P(X >= 3)
+```{r}
+b<-4
+a<-3
+
+```
+
+$$
+\int ^4 _3  f(x) dx = F(x)|^4 _3 
+$$
+La probabilidad de P(X >= 3)
+```{r}
+
+fda<- (0.5*4)-(0.5*3)
+print(fda)
+```
+
+
+ii) P(1.25 < X <= 2.05)
+
+```{r}
+b<-2.05
+a<-1.25
+```
+
+
+$$
+\int ^b _a  f(x) dx = F(x)|^b _a 
+$$
+
+La probabilidad de P(1.25 < X <= 2.05) es:
+```{r}
+fda<- (0.5*2.05)-(0.5*1.25)
+print(fda)
+```
+>Se resolvio con uniforme continua
+
+**Ejercicio 10.- 
+Los clientes llegan a una instalacion de servicio de acuerdo con la distribucion de Poisson, con una frecuencia de cuatro por minuto.
+¿Cual es la probabilidad de que al menos un cliente llegue en determinado intervalo de 30 segundos?**
+
+>x=variable discreta, llegadas
+
+conseguimos $\lambda$ de la siguiente manera:
+```{r}
+
+lambda= (4*30)/60
+	print(lambda)
+
+```
+
+> Calculando para P(x=0)
+
+```{r}
+
+dpois(0,2)
+```
+
+>Calculamos el complemento
+
+La probabilidad de que almenos un cliente llegue en 30 segundos es la siguiente:
+```{r}
+
+cliente = 1-dpois(0,2)
+
+
+print(cliente)
+
+
+```
+>*Se resolvio usando distribucion Poisson*
+
+**Ejercicio 11.-
+Supongase que el número de llamadas telefonicas que recibe una operadorea desde las 9:00 horas hasta las 9:05 horas sigue una disrubucion Poisson con $\lambda = 4$ .Hallar:**
+
+a) Probabilidad de que la operadora no reciba ninguna llamada al dia siguiente en ese intervalo de tiempo.
+
+Resolvemos el problema teniendo en cuenta que:
+$x=0$ y $\lambda = 8$ ya seria el dia siguiente entonces multiplicamos nuestra $\lambda * 2$
+```{r}
+prob <- dpois(0,8)
+print(prob)
+
+```
+
+
+b) Probabilidad de que en los dos próximos dias la operadora reciba un total de 3 llamadas en ese intervalo de tiempo.
+
+Aqui nuestro valor de $x = 3$ ya que es la probabilidad de que ocurran 3 llamadas en el intervalo de tiempo, y utilizamos $\lambda *3$ ya que nos piden 3 dias despues tomando en cuenta el primer dia.
+```{r}
+prob <- dpois(3,12)
+print(prob)
+```
+>*Se resolvio usando distribucion Poisson*
+
+**Ejercicio 12.-
+La duración de un cierto modelo de batería tiene una distribución exponencial. Se sabe que la media es de 5500 horas. El fabricante de las baterías debe informar cuál es la duración de esas baterías. ¿Qué duración debe informar si quiere que la probabilidad de que una batería concreta viva más que esa duración informada sea del 85%?**
+
+La probabilidad de que la batreria dure mas del 85% seria:
+
+P(x > 5500*.85), para utilizar la instruccion en R tendriamos que sacar el complemento.
+```{r}
+prob <- 1 - pexp(.85*5500,1/5500)
+print(prob)
+```
+>*Se resolvio usando distribucion exponencial*
+
+**Ejercicio 13.-
+La duración de la vida de una bombilla es exponencial. La probabilidad de que  sobrepase las 100 horas de uso es 0.9**
+
+a) ¿cuál es la probabilidad de que sobrepase 200 horas de uso?
+
+Pasos
+Tenemos que $${P(X>100) =  1-P(X \le 100)}$$ 
+
+Vamos haciendo la formula de forma regresiva para encontrar nuestro valor de $\lambda$:
+
+$${1-F(100)} = {1-[1-e^{100\lambda}]} = 0.9 $$
+
+Despejamos para $\lambda$ 
+$$e^{-100\lambda} = 0.9 \Rightarrow -100\lambda=Ln0.9 \Rightarrow -100\lambda = -0.105 \Rightarrow \lambda =\frac {-0.105}{-100} = \lambda=0.00105$$
+
+
+```{r}
+lambda <- (log(0.9)/-100)
+```
+Teniendo el valor de $\lambda$, lo utilizamos para resolver en las x que nos pide el problema:
+
+```{r}
+prob <- 1 - pexp(200,lambda)
+print(prob)
+```
+
+b)¿Cuántas horas se mantiene funcionando con una probabilidad de 0.95?
+
+Tenemos lo siguiente:
+$$P(X>t)=95 \Rightarrow P(X>t)=1-P(X\le t) \Rightarrow 1-F(t)=e^{-0.00105}=0.95$$
+
+Tenemos que despejar para t:
+$$e^{-0.00105}=0.95 \Rightarrow -0.00105=Ln(0.95) \Rightarrow-0.00105t=-0.05129 \Rightarrow t=\frac{-0.05129}{-0.00105}$$
+
+```{r}
+#Valor de t
+valor <- log(0.95)
+t <- (valor/-0.00105)
+print(t)
+```
+>*Se resolvio usando distribucion exponencial*
+
+**Ejercicio 14.-
+El tiempo de revisión del motor de un avión sigue una distribución exponencial con media de 17 minutos. **
+
+a) Entontrar la probabilidad de que el tiempo de revisión sea menor a 10 minutos
+
+x = Tiempo de revisión sea menor a 10 minutos
+```{r}
+
+pexp(10, 1/17)
+
+```
+b) ¿Cuál es el tiempo de revisión de un motor superado por el 10% de los tiempos de revisión.
+
+
+$\lambda$ es la misma ya que no hay cambio
+```{r}
+1-pexp(10, 1/1.7)
+
+```
+c) El  costo  de  revisión  es  de  200  unidades  monetarias  ﬁjas  al  que  se  le  suma  10  unidades  monetarias  por  el tiempo  que  dure  la  revisión.   Encontrar  la  media  y  la  varianza  del  costo.
+ 
+ >*Se resolvio con distribucion exponencial*
+
+**Ejercicio 15 .-
+Sea X una variable aleatoria  normal  con $\mu  =  50$  y  $\sigma^{2} =  25$. Calcular:**
+
+a) $P(X \le 40)$
+```{r}
+pnorm(40,50,25)
+
+```
+b) $P(X \le 60)$
+
+```{r}
+pnorm(60,50,25)
+
+```
+c) $P(X  >  65)$
+```{r}
+1-pnorm(65,50,25)
+```
+d) $P(X  >  35)$
+```{r}
+1-pnorm(35,50,25)
+
+```
+e)$ P(40  <  X  <  60)$
+```{r}
+pnorm(c(40,60), mean =50, sd =25)
+```
+f ) $P(30  <  X  <  42)$
+```{r}
+pnorm(c(30,42), mean =50, sd=25)
+```
+
+>*Se resolvio con distribucion normal*
+

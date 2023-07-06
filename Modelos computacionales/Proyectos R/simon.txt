@@ -1,0 +1,135 @@
+---
+title: "Tarea 3"
+author: "Ricardo Gabriel Rodriguez Gonzalez"
+date: '2022-03-16'
+output: pdf_document
+---
+##Ejercicio 1. 
+
+$X(t) =$la ubicación del vendedor en el día t
+
+Los estados:
+$M = {A,B,C}$ Correspondientes a las tres diferentes ciudades.
+
+Temporalidad:
+Por día
+
+$\left[\begin{array}0 0.1,0.3,0.6\\0,2,0.2,0.6\\0.2,0.4,0.4\end{array}\right]$
+
+```{r}
+library(markovchain)
+statesNames = c("A","B","C")
+mc_p1 <- new("markovchain",transitionMatrix = matrix(c(0.1,0.3,0.6,0.2,0.2,0.6,0.2,0.4,0.4),byrow = TRUE,nrow = 3,dimnames = list(statesNames,statesNames)))
+mc_p1
+```
+Digarama de transición de estados:
+```{r}
+plot(mc_p1)
+```
+a) Si hoy el vendedor está en C, Cúal es la probabilidad de que tambíen tenga que trabajar en C al cabo de cuatro días?
+
+```{r}
+#Calculamos la matriz de 4 pasos
+mc_p1^4
+```
+***La probabilidad de que tambíen tenga que trabajar en C al cabo de cuatro días es 0.5008 o 50.08% ***
+
+b) Cuales son los porcentajes de días en los que el agente de ventas está en cada una de las tres localidades?
+
+```{r}
+print(mc_p1^7)
+print(mc_p1^30)
+print(mc_p1^365)
+```
+***Los porcentajes de días en los que el agente de ventas está en cada una de las tres localidades son 18.18%, 31.81% y 50%, respectivamente.***
+
+
+##Ejercicio 2.
+
+Mi variable aleatoria es:
+$X(T) = {$Inspección de una computadora en la hora t$}$
+
+Los estados:
+$M = {"Trabajando","Descompuesta"}$ Dos estados.
+
+Temporalidad
+por hora.
+
+$\left[\begin{array}0 0.95,0.05\\0,5,0.5\end{array}\right]$
+
+```{r}
+statesNames = c("Trabajando","Descompuesta")
+mc_p2 <- new("markovchain",transitionMatrix = matrix(c(0.95,0.05,0.5,0.5),byrow = TRUE,nrow = 2,dimnames = list(statesNames,statesNames)))
+mc_p2
+```
+b)Encuentre el tiempo
+```{r}
+print( meanFirstPassageTime(mc_p2))
+```
+##Ejercicio 3.
+
+Mi variable aleatoria es:
+$X(T) =$La posición de la partícula dentro de un circulot.
+
+Los estados:
+$M = {"0","1","2","3","4"}$5 estados correspondientes a los puntos marcados en el círculo.
+
+Temporalidad:
+Por paso
+$\left[\begin{array}00,0.5,0,0,0.5\\0.5,0,0.5,0,0\\0,0.5,0,0.5,0\\0,0,0.5,0,0.5\\0.5,0,0,0.5,0\end{array}\right]$
+
+a)Encuentre la matriz de transición(de un paso)
+```{r}
+statesNames = c("0","1","2","3","4")
+mc_p3 <- new("markovchain",transitionMatrix = matrix(c(0,0.5,0,0,0.5,0.5,0,0.5,0,0,0,0.5,0,0.5,0,0,0,0.5,0,0.5,0.5,0,0,0.5,0),byrow = TRUE,nrow = 5,dimnames = list(statesNames,statesNames)))
+plot(mc_p3)
+```
+b)
+```{r}
+elevar matriz a diferentes potencias
+```
+
+c)
+```{r}
+utilizar la funcion de steadyStates() y comparar con inciso anterior
+```
+
+
+
+
+##Ejercicio 4.
+
+Mi variable aleatoria es:
+$X(T) =$La ubicación en la cuadrícula en el lanzamiento t
+
+Los estados:
+$M = {"A","B","C","D"}$ 4 estados correspondientes a las casillas.
+
+Temporalidad:
+por lanzamiento
+$\left[\begin{array}0 1/6,2/6,2/6,1/6\\1/6,1/6,2/6,2/6\\2/6,1/6,1/6,2/6\\2/6,2/6,1/6,1/6\end{array}\right]$
+
+```{r}
+statesNames = c("A","B","C","D")
+mc_p4 <- new("markovchain",transitionMatrix = matrix(c(1/6, 2/6, 2/6, 1/6, 1/6, 1/6, 2/6, 2/6, 2/6, 1/6, 1/6, 2/6, 2/6, 2/6, 1/6, 1/6),byrow = TRUE,nrow = 4,dimnames = list(statesNames,statesNames)))
+mc_p4
+```
+a) Exprese el problema como una cadena de markov.
+
+***INCLUIR PRUEBA DE PROPIEDAD MARKOVIANA***
+
+b)Determine la ganancia o pérdida despues de lanzar el dado 5 veces
+
+```{r}
+#Se calcula la matriz de 5 pasos
+m5p4 <- mc_p4^5
+print(m5p4)
+#calcular la ganancia/pérdida esperados
+Ct <- c(4,-2,-6,9)
+print(sum(m5p4*Ct))
+```
+***La ganancia esperada despues de lanzr el dado 5 veces es de $5***
+
+
+
+
